@@ -1,0 +1,32 @@
+@theme {
+  --breakpoint-xs: 30rem;
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+}
+
+@utility app-container {
+  @apply mx-auto w-full px-4 sm:px-6 lg:max-w-[1200px] lg:px-8;
+}
+
+@utility app-grid {
+  @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+@utility app-title {
+  @apply text-2xl leading-tight sm:text-3xl lg:text-4xl;
+}
+
+@utility app-text {
+  @apply text-sm leading-6 sm:text-base lg:text-lg;
+}
+
+@utility show-mobile-only {
+  @apply block md:hidden;
+}
+
+@utility hide-mobile {
+  @apply hidden md:block;
+}
