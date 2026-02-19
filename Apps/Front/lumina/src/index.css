@@ -16,13 +16,13 @@ body {
 .light {
   --primary: #ffffff;
   --secondary: #000000;
-  --background: #f0f0f0;
+  --background: #ffffff;
   --text: #333333;
 }
 
 .dark {
   --primary: #000000;
   --secondary: #ffffff;
-  --background: #333333;
-  --text: #f0f0f0;
+  --background: #000000;
+  --text: #ffffff;
 }
