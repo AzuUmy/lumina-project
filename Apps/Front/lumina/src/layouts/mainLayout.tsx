@@ -1,10 +1,11 @@
 import { Outlet } from "@tanstack/react-router";
+import { Menu } from "../components/menu/menu";
 
 export default function MainLayout() {
   return (
     <div>
-      <h1>Main layout</h1>
       <Outlet />
+      <Menu />
     </div>
   );
 }

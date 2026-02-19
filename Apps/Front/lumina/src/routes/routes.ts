@@ -40,8 +40,6 @@ export const Router = createRouter({
   routeTree,
 });
 
-
-
 declare module "@tanstack/react-router" {
   interface Register {
     router: typeof Router;
