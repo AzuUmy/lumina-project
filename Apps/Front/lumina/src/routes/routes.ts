@@ -7,6 +7,7 @@ import {
 } from "@tanstack/react-router";
 import { Home } from "../pages/Home";
 import MainLayout from "../layouts/mainLayout";
+import { Hot } from "../pages/Hot";
 
 const rootRoute = createRootRoute({
   component: Outlet,
@@ -20,20 +21,27 @@ const MainLayoutRoute = createRoute({
 
 const HomeRoute = createRoute({
   getParentRoute: () => MainLayoutRoute,
-  path: "/home",
+  path: "/Home",
   component: Home,
+});
+
+
+const HotRoute = createRoute({
+  getParentRoute: () => MainLayoutRoute,
+  path: "/Hot",
+    component: Hot,
 });
 
 const indexRoute = createRoute({
   getParentRoute: () => MainLayoutRoute,
   path: "/",
   beforeLoad: () => {
-    throw redirect({ to: "/home" });
+    throw redirect({ to: "/Home" });
   },
 });
 
 export const routeTree = rootRoute.addChildren([
-  MainLayoutRoute.addChildren([indexRoute, HomeRoute]),
+  MainLayoutRoute.addChildren([indexRoute, HomeRoute, HotRoute]),
 ]);
 
 export const Router = createRouter({
