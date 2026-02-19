@@ -9,9 +9,85 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String         @id @default(cuid())
+  tenantKey     String         @unique
+  email         String         @unique
+  name          String?
+  favoriteLists FavoriteList[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model FavoriteList {
+  id        String             @id @default(cuid())
+  name      String
+  userId    String
+  user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     FavoriteListItem[]
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  @@index([userId])
+}
+
+model FavoriteListItem {
+  id             String       @id @default(cuid())
+  favoriteListId String
+  mangaId        String
+  favoriteList   FavoriteList @relation(fields: [favoriteListId], references: [id], onDelete: Cascade)
+  manga          Manga        @relation(fields: [mangaId], references: [id], onDelete: Cascade)
+  createdAt      DateTime     @default(now())
+
+  @@unique([favoriteListId, mangaId])
+  @@index([favoriteListId])
+  @@index([mangaId])
+}
+
+model Manga {
+  id           String             @id @default(cuid())
+  title        String
+  chapters     Int?
+  volumes      Int?
+  coverId      String?
+  description  String?
+  favorites    FavoriteListItem[]
+  mangaAuthors MangaAuthor[]
+  mangaGenres  MangaGenre[]
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+}
+
+model Author {
+  id           String        @id @default(cuid())
+  name         String
+  bio          String?
+  mangaAuthors MangaAuthor[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model MangaAuthor {
+  mangaId  String
+  authorId String
+  manga    Manga  @relation(fields: [mangaId], references: [id], onDelete: Cascade)
+  author   Author @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@id([mangaId, authorId])
+  @@index([authorId])
+}
+
+model Genre {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  mangaGenres MangaGenre[]
+}
+
+model MangaGenre {
+  mangaId String
+  genreId String
+  manga   Manga  @relation(fields: [mangaId], references: [id], onDelete: Cascade)
+  genre   Genre  @relation(fields: [genreId], references: [id], onDelete: Cascade)
+
+  @@id([mangaId, genreId])
+  @@index([genreId])
 }
