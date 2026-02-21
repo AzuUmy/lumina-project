@@ -11,18 +11,31 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--text);
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 .light {
+  color-scheme: light;
   --primary: #ffffff;
   --secondary: #000000;
   --background: #ffffff;
-  --text: #333333;
+  --text: #1f2937;
+  --surface: #ffffff;
+  --surface-muted: #f3f4f6;
+  --border: rgba(15, 23, 42, 0.14);
+  --backdrop: rgba(255, 255, 255, 0.72);
+  --accent: #2563eb;
 }
 
 .dark {
+  color-scheme: dark;
   --primary: #000000;
   --secondary: #ffffff;
   --background: #000000;
-  --text: #ffffff;
+  --text: #f9fafb;
+  --surface: #282828;
+  --surface-muted: #141419;
+  --border: rgba(255, 255, 255, 0.18);
+  --backdrop: rgba(21, 21, 21, 0.62);
+  --accent: #60a5fa;
 }
