@@ -19,10 +19,10 @@ body {
   --primary: #ffffff;
   --secondary: #000000;
   --background: #ffffff;
-  --text: #1f2937;
+  --text: #161f2d;
   --surface: #ffffff;
   --surface-muted: #f3f4f6;
-  --border: rgba(15, 23, 42, 0.14);
+  --border: rgba(99, 100, 103, 0.14);
   --backdrop: rgba(255, 255, 255, 0.72);
   --accent: #2563eb;
 }
@@ -33,9 +33,9 @@ body {
   --secondary: #ffffff;
   --background: #000000;
   --text: #f9fafb;
-  --surface: #282828;
+  --surface: #000000;
   --surface-muted: #141419;
-  --border: rgba(255, 255, 255, 0.18);
-  --backdrop: rgba(21, 21, 21, 0.62);
-  --accent: #60a5fa;
+  --border: rgba(147, 147, 147, 0.18);
+  --backdrop: rgba(47, 47, 47, 0.484);
+  --accent: #ffffff;
 }

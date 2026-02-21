@@ -21,7 +21,7 @@ export function MenuComponent() {
           <div
             className="rounded-full flex justify-center gap-5 backdrop-blur-md border"
             style={{
-              backgroundColor: "color-mix(in srgb, var(--surface) 72%, transparent)",
+              backgroundColor: "color-mix(in srgb, var(--border) 72%, transparent)",
               borderColor: "var(--border)",
               color: "var(--text)",
               padding: "0.85rem 1rem",

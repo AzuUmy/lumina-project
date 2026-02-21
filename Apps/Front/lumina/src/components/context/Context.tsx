@@ -327,7 +327,7 @@ export function Context({
           color: "var(--text)",
           border: "1px solid var(--border)",
           borderRadius: getRadius(placement),
-          boxShadow: "0 12px 50px rgba(0, 0, 0, 0.28)",
+          //boxShadow: "0 12px 50px rgba(0, 0, 0, 0.20)",
           transitionProperty: "transform, opacity",
           transitionTimingFunction: "ease",
           transitionDuration: `${animationMs}ms`,
