@@ -74,10 +74,17 @@ function normalizeSpacing(spacing: ContextSpacing | undefined): EdgeSpacing {
   };
 }
 
-function getBasePlacementStyle(placement: ContextPlacement, spacing: EdgeSpacing): CSSProperties {
+function getBasePlacementStyle(
+  placement: ContextPlacement,
+  spacing: EdgeSpacing,
+): CSSProperties {
   switch (placement) {
     case "bottom":
-      return { left: spacing.left, right: spacing.right, bottom: spacing.bottom };
+      return {
+        left: spacing.left,
+        right: spacing.right,
+        bottom: spacing.bottom,
+      };
     case "top":
       return { left: spacing.left, right: spacing.right, top: spacing.top };
     case "left":
@@ -102,7 +109,10 @@ function getAnchorTransform(placement: ContextPlacement): string {
   return placement === "center" ? "translate(-50%, -50%)" : "";
 }
 
-function getSlideTransform(placement: ContextPlacement, animateIn: boolean): string {
+function getSlideTransform(
+  placement: ContextPlacement,
+  animateIn: boolean,
+): string {
   if (animateIn) return "translate(0px, 0px)";
 
   switch (placement) {
@@ -206,7 +216,13 @@ export function Context({
   }, [showContext, animationMs, animationPreset]);
 
   useLayoutEffect(() => {
-    if (!mounted || animationPreset !== "grow" || !frozenGrowFrom || !panelRef.current) return;
+    if (
+      !mounted ||
+      animationPreset !== "grow" ||
+      !frozenGrowFrom ||
+      !panelRef.current
+    )
+      return;
 
     // Lock start offset before first visible frame.
     const rect = panelRef.current.getBoundingClientRect();
@@ -231,7 +247,9 @@ export function Context({
 
   const edgeSpacing = useMemo(() => normalizeSpacing(spacing), [spacing]);
   const isGrowAboveOrigin =
-    animationPreset === "grow" && placement === "center" && Boolean(frozenGrowFrom);
+    animationPreset === "grow" &&
+    placement === "center" &&
+    Boolean(frozenGrowFrom);
   const growVerticalOffsetCss = toCssSize(growVerticalOffset) || "-25px";
 
   const basePlacementStyle = useMemo(
@@ -239,7 +257,7 @@ export function Context({
       isGrowAboveOrigin && frozenGrowFrom
         ? { left: "50%", top: frozenGrowFrom.y + "px" }
         : getBasePlacementStyle(placement, edgeSpacing),
-    [isGrowAboveOrigin, frozenGrowFrom, placement, edgeSpacing]
+    [isGrowAboveOrigin, frozenGrowFrom, placement, edgeSpacing],
   );
 
   const anchorTransform = useMemo(
@@ -247,7 +265,7 @@ export function Context({
       isGrowAboveOrigin
         ? `translate(-50%, ${growVerticalOffsetCss})`
         : getAnchorTransform(placement),
-    [isGrowAboveOrigin, placement, growVerticalOffsetCss]
+    [isGrowAboveOrigin, placement, growVerticalOffsetCss],
   );
 
   const isEdgeHorizontal = placement === "bottom" || placement === "top";
@@ -267,7 +285,10 @@ export function Context({
     if (animationPreset === "scale") {
       return {
         opacity: animateIn ? 1 : 0,
-        transform: composeTransform(anchorTransform, animateIn ? "scale(1)" : "scale(0.92)"),
+        transform: composeTransform(
+          anchorTransform,
+          animateIn ? "scale(1)" : "scale(0.92)",
+        ),
       };
     }
 
@@ -275,15 +296,29 @@ export function Context({
       const collapsed = `translate(${growOffset.x}px, ${growOffset.y}px) scale(0.08)`;
       return {
         opacity: growReady ? (animateIn ? 1 : 0) : 0,
-        transform: composeTransform(anchorTransform, animateIn ? "translate(0px, 0px) scale(1)" : collapsed),
+        transform: composeTransform(
+          anchorTransform,
+          animateIn ? "translate(0px, 0px) scale(1)" : collapsed,
+        ),
       };
     }
 
     return {
       opacity: animateIn ? 1 : 0,
-      transform: composeTransform(anchorTransform, getSlideTransform(placement, animateIn)),
+      transform: composeTransform(
+        anchorTransform,
+        getSlideTransform(placement, animateIn),
+      ),
     };
-  }, [animationPreset, animateIn, anchorTransform, placement, growOffset.x, growOffset.y, growReady]);
+  }, [
+    animationPreset,
+    animateIn,
+    anchorTransform,
+    placement,
+    growOffset.x,
+    growOffset.y,
+    growReady,
+  ]);
 
   if (!mounted) return null;
 
@@ -295,6 +330,7 @@ export function Context({
           className="fixed inset-0 z-10 transition-opacity"
           style={{
             backgroundColor: "var(--backdrop)",
+            backdropFilter: "blur(4px)",
             opacity: animateIn ? backdropOpacity : 0,
             transitionDuration: transitionDuration,
             ...backdropStyle,
@@ -315,10 +351,14 @@ export function Context({
           transitionTimingFunction: "ease",
           transitionDuration: transitionDuration,
           willChange: "transform, opacity",
-          width: toCssSize(width) || (isEdgeHorizontal ? undefined : "min(92vw, 30rem)"),
-          maxWidth: toCssSize(maxWidth) || (isEdgeHorizontal ? undefined : "92vw"),
+          width:
+            toCssSize(width) ||
+            (isEdgeHorizontal ? undefined : "min(92vw, 30rem)"),
+          maxWidth:
+            toCssSize(maxWidth) || (isEdgeHorizontal ? undefined : "92vw"),
           height: toCssSize(height) || undefined,
-          maxHeight: toCssSize(maxHeight) || (isEdgeVertical ? undefined : "90vh"),
+          maxHeight:
+            toCssSize(maxHeight) || (isEdgeVertical ? undefined : "90vh"),
           overflow: "auto",
           ...basePlacementStyle,
           ...animationStyle,

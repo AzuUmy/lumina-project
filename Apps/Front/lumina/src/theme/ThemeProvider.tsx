@@ -61,7 +61,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       syncSystemTheme();
     };
 
-    // Safari compatibility: older versions expose addListener/removeListener only.
     const legacyMedia = media as MediaQueryList & {
       addListener?: (listener: (event: MediaQueryListEvent) => void) => void;
       removeListener?: (listener: (event: MediaQueryListEvent) => void) => void;
@@ -73,7 +72,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       legacyMedia.addListener?.(handleChange);
     }
 
-    // iOS Safari can miss media-query change events until tab/app is foregrounded.
     document.addEventListener("visibilitychange", handleChange);
     window.addEventListener("focus", handleChange);
     window.addEventListener("pageshow", handleChange);

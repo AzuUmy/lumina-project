@@ -1,4 +1,4 @@
-import { HotComponent } from "../components/Search/HotComponent";
+import { HotComponent } from "../components/Hot/HotComponent";
 
 
 export function Hot() {
