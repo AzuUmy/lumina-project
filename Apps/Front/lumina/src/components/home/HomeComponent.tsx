@@ -5,6 +5,7 @@ import { Context } from "../context/Context";
 import { useTheme } from "../../theme/ThemeProvider";
 import { SearchComponenet } from "../Search/SearchComponent";
 import { GenresCnomponent } from "../genres/GengeresComponent";
+import { Library } from "./content/Library";
 
 export function HomeComponent() {
   const [openUserContext, setOpenUserContext] = useState(false);
@@ -14,7 +15,7 @@ export function HomeComponent() {
   return (
     <section>
       <div>
-        <div className="fixed mt-10 w-full show-mobile-only">
+        <div className="fixed mt-10 w-full z-index-50 show-mobile-only">
           <div className=" flex items-center justify-between pl-10 pr-10 ">
             <div>
               <button
@@ -65,6 +66,9 @@ export function HomeComponent() {
           <SearchComponenet />
           <div>
             <GenresCnomponent />
+          </div>
+          <div className="mt-5">
+            <Library />
           </div>
         </div>
       </div>

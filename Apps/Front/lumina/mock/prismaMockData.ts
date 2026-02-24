@@ -165,6 +165,56 @@ export const mangas: MockManga[] = [
     createdAt: "2026-01-15T10:00:00.000Z",
     updatedAt: "2026-02-18T15:10:00.000Z",
   },
+  {
+    id: "mng_01hzt6p10u8x4t7k9e4n006",
+    title: "Iron Rain",
+    chapters: 91,
+    volumes: 12,
+    coverId: "cover_iron_rain",
+    description: "A war-torn kingdom fights airborne mechs powered by ancient relics.",
+    createdAt: "2026-01-18T10:00:00.000Z",
+    updatedAt: "2026-02-18T15:10:00.000Z",
+  },
+  {
+    id: "mng_01hzt6p10u8x4t7k9e4n007",
+    title: "Paper Moon District",
+    chapters: 58,
+    volumes: 7,
+    coverId: "cover_paper_moon_district",
+    description: "A neighborhood of artists hides a conspiracy inside old sketchbooks.",
+    createdAt: "2026-01-20T10:00:00.000Z",
+    updatedAt: "2026-02-18T15:10:00.000Z",
+  },
+  {
+    id: "mng_01hzt6p10u8x4t7k9e4n008",
+    title: "Gravity Orchard",
+    chapters: 33,
+    volumes: 5,
+    coverId: "cover_gravity_orchard",
+    description: "Teen inventors discover fruit that bends gravity around their town.",
+    createdAt: "2026-01-24T10:00:00.000Z",
+    updatedAt: "2026-02-18T15:10:00.000Z",
+  },
+  {
+    id: "mng_01hzt6p10u8x4t7k9e4n009",
+    title: "Ashes of Meridian",
+    chapters: 147,
+    volumes: 16,
+    coverId: "cover_ashes_of_meridian",
+    description: "A fallen knight rebuilds a shattered empire one city at a time.",
+    createdAt: "2026-01-26T10:00:00.000Z",
+    updatedAt: "2026-02-18T15:10:00.000Z",
+  },
+  {
+    id: "mng_01hzt6p10u8x4t7k9e4n010",
+    title: "Cipher Bloom",
+    chapters: 76,
+    volumes: 9,
+    coverId: "cover_cipher_bloom",
+    description: "A codebreaker and a florist decode messages hidden in rare petals.",
+    createdAt: "2026-01-29T10:00:00.000Z",
+    updatedAt: "2026-02-18T15:10:00.000Z",
+  },
 ];
 
 export const favoriteListItems: MockFavoriteListItem[] = [
@@ -237,6 +287,11 @@ export const mangaAuthors: MockMangaAuthor[] = [
   { mangaId: "mng_01hzt6p10u8x4t7k9e4n004", authorId: "aut_01hzt6p10u8x4t7k9e4q002" },
   { mangaId: "mng_01hzt6p10u8x4t7k9e4n005", authorId: "aut_01hzt6p10u8x4t7k9e4q001" },
   { mangaId: "mng_01hzt6p10u8x4t7k9e4n005", authorId: "aut_01hzt6p10u8x4t7k9e4q003" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n006", authorId: "aut_01hzt6p10u8x4t7k9e4q003" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n007", authorId: "aut_01hzt6p10u8x4t7k9e4q002" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n008", authorId: "aut_01hzt6p10u8x4t7k9e4q001" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n009", authorId: "aut_01hzt6p10u8x4t7k9e4q003" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n010", authorId: "aut_01hzt6p10u8x4t7k9e4q002" },
 ];
 
 export const genres: MockGenre[] = [
@@ -257,6 +312,16 @@ export const mangaGenres: MockMangaGenre[] = [
   { mangaId: "mng_01hzt6p10u8x4t7k9e4n004", genreId: "gnr_01hzt6p10u8x4t7k9e4r004" },
   { mangaId: "mng_01hzt6p10u8x4t7k9e4n005", genreId: "gnr_01hzt6p10u8x4t7k9e4r002" },
   { mangaId: "mng_01hzt6p10u8x4t7k9e4n005", genreId: "gnr_01hzt6p10u8x4t7k9e4r003" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n006", genreId: "gnr_01hzt6p10u8x4t7k9e4r002" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n006", genreId: "gnr_01hzt6p10u8x4t7k9e4r005" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n007", genreId: "gnr_01hzt6p10u8x4t7k9e4r004" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n007", genreId: "gnr_01hzt6p10u8x4t7k9e4r003" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n008", genreId: "gnr_01hzt6p10u8x4t7k9e4r001" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n008", genreId: "gnr_01hzt6p10u8x4t7k9e4r005" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n009", genreId: "gnr_01hzt6p10u8x4t7k9e4r002" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n009", genreId: "gnr_01hzt6p10u8x4t7k9e4r004" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n010", genreId: "gnr_01hzt6p10u8x4t7k9e4r004" },
+  { mangaId: "mng_01hzt6p10u8x4t7k9e4n010", genreId: "gnr_01hzt6p10u8x4t7k9e4r003" },
 ];
 
 export const mockDatabase = {
