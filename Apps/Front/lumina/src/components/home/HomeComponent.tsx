@@ -6,11 +6,16 @@ import { useTheme } from "../../theme/ThemeProvider";
 import { SearchComponenet } from "../Search/SearchComponent";
 import { GenresCnomponent } from "../genres/GengeresComponent";
 import { Library } from "./content/Library";
+import { SearchFilter } from "../Search/SearchFilters";
 
 export function HomeComponent() {
   const [openUserContext, setOpenUserContext] = useState(false);
   const [origin, setOrigin] = useState<{ x: number; y: number } | undefined>();
   const { toggleTheme, resolvedTheme } = useTheme();
+  const [openSearchOptions, setOpenSearchOptions] = useState(false);
+  const [searchOrigin, setSearchOrigin] = useState<
+    { x: number; y: number } | undefined
+  >();
 
   return (
     <section>
@@ -60,10 +65,34 @@ export function HomeComponent() {
             <UserModal />
           </Context>
         </div>
+
+        <div>
+          <Context
+            showContext={openSearchOptions}
+            onClose={() => setOpenSearchOptions(false)}
+            placement="center"
+            animationPreset="grow"
+            growFrom={searchOrigin}
+            growVerticalOffset={-30}
+            maxWidth={365}
+          >
+            <div className="p-3 flex justify-center flex-col">
+              <SearchComponenet radius="10px" />
+              <div className="mt-3">
+                <SearchFilter />
+              </div>
+            </div>
+          </Context>
+        </div>
       </div>
       <div className="show-mobile-only relative">
         <div className="absolute top-32 left-[50%] translate-x-[-50%]">
-          <SearchComponenet />
+          <SearchComponenet
+            openSearchOptions={(origin) => {
+              setSearchOrigin(origin);
+              setOpenSearchOptions(true);
+            }}
+          />
           <div>
             <GenresCnomponent />
           </div>

@@ -9,7 +9,7 @@ export function Library() {
             <div>
               <div className="relative w-0 h-0 p-0">
                 <div className="absolute top-0 left-2 bg-blue-500 font-bold text-sm p-1 rounded-full">
-                  <h4>{manga.chapters}</h4>
+                  <h4 className="text-white">{manga.chapters}</h4>
                 </div>
               </div>
               <div

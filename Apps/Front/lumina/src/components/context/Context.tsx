@@ -18,6 +18,7 @@ type ContextPlacement =
   | "left"
   | "right"
   | "center"
+  | "middle"
   | "top-left"
   | "top-right"
   | "bottom-left"
@@ -35,6 +36,7 @@ type ContextProps = {
   spacing?: ContextSpacing;
   animationPreset?: ContextAnimation;
   growFrom?: Point;
+  positionAt?: Point;
   growVerticalOffset?: number | string;
   animationMs?: number;
   closeOnBackdropClick?: boolean;
@@ -100,13 +102,16 @@ function getBasePlacementStyle(
     case "bottom-right":
       return { bottom: spacing.bottom, right: spacing.right };
     case "center":
+    case "middle":
     default:
       return { top: "50%", left: "50%" };
   }
 }
 
 function getAnchorTransform(placement: ContextPlacement): string {
-  return placement === "center" ? "translate(-50%, -50%)" : "";
+  return placement === "center" || placement === "middle"
+    ? "translate(-50%, -50%)"
+    : "";
 }
 
 function getSlideTransform(
@@ -131,6 +136,7 @@ function getSlideTransform(
     case "bottom-right":
       return "translateY(18px)";
     case "center":
+    case "middle":
     default:
       return "translateY(18px)";
   }
@@ -163,6 +169,7 @@ export function Context({
   spacing = 0,
   animationPreset = "slide",
   growFrom,
+  positionAt,
   growVerticalOffset = -25,
   animationMs = 350,
   closeOnBackdropClick = true,
@@ -193,7 +200,8 @@ export function Context({
       setHasOpenedCycle(false);
 
       if (animationPreset === "grow") {
-        setFrozenGrowFrom(growFrom ?? null);
+        // `middle` is always centered and should not borrow an external origin point.
+        setFrozenGrowFrom(placement === "middle" ? null : growFrom ?? null);
       } else {
         const px = setTimeout(() => {
           setAnimateIn(true);
@@ -216,13 +224,14 @@ export function Context({
   }, [showContext, animationMs, animationPreset]);
 
   useLayoutEffect(() => {
-    if (
-      !mounted ||
-      animationPreset !== "grow" ||
-      !frozenGrowFrom ||
-      !panelRef.current
-    )
+    if (!mounted || animationPreset !== "grow" || !panelRef.current) return;
+
+    // For center/middle grow we don't need an external origin; animate from self center.
+    if (!frozenGrowFrom) {
+      setGrowOffset({ x: 0, y: 0 });
+      setGrowReady(true);
       return;
+    }
 
     // Lock start offset before first visible frame.
     const rect = panelRef.current.getBoundingClientRect();
@@ -248,28 +257,35 @@ export function Context({
   const edgeSpacing = useMemo(() => normalizeSpacing(spacing), [spacing]);
   const isGrowAboveOrigin =
     animationPreset === "grow" &&
-    placement === "center" &&
+    !positionAt &&
+    (placement === "center" || placement === "middle") &&
     Boolean(frozenGrowFrom);
   const growVerticalOffsetCss = toCssSize(growVerticalOffset) || "-25px";
 
   const basePlacementStyle = useMemo(
     () =>
-      isGrowAboveOrigin && frozenGrowFrom
+      positionAt
+        ? { left: `${positionAt.x}px`, top: `${positionAt.y}px` }
+        : isGrowAboveOrigin && frozenGrowFrom
         ? { left: "50%", top: frozenGrowFrom.y + "px" }
         : getBasePlacementStyle(placement, edgeSpacing),
-    [isGrowAboveOrigin, frozenGrowFrom, placement, edgeSpacing],
+    [positionAt, isGrowAboveOrigin, frozenGrowFrom, placement, edgeSpacing],
   );
 
   const anchorTransform = useMemo(
     () =>
       isGrowAboveOrigin
         ? `translate(-50%, ${growVerticalOffsetCss})`
+        : positionAt
+        ? "translate(-50%, -50%)"
         : getAnchorTransform(placement),
-    [isGrowAboveOrigin, placement, growVerticalOffsetCss],
+    [isGrowAboveOrigin, positionAt, placement, growVerticalOffsetCss],
   );
 
-  const isEdgeHorizontal = placement === "bottom" || placement === "top";
-  const isEdgeVertical = placement === "left" || placement === "right";
+  const isEdgeHorizontal =
+    !positionAt && (placement === "bottom" || placement === "top");
+  const isEdgeVertical =
+    !positionAt && (placement === "left" || placement === "right");
 
   const transitionDuration =
     animationPreset === "grow" && !hasOpenedCycle ? "0ms" : `${animationMs}ms`;
