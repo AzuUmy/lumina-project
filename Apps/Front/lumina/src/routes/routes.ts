@@ -8,6 +8,7 @@ import {
 import { Home } from "../pages/Home";
 import MainLayout from "../layouts/mainLayout";
 import { Hot } from "../pages/Hot";
+import {Manga} from "../pages/Manga"
 
 const rootRoute = createRootRoute({
   component: Outlet,
@@ -25,11 +26,10 @@ const HomeRoute = createRoute({
   component: Home,
 });
 
-
 const HotRoute = createRoute({
   getParentRoute: () => MainLayoutRoute,
   path: "/Hot",
-    component: Hot,
+  component: Hot,
 });
 
 const indexRoute = createRoute({
@@ -40,8 +40,18 @@ const indexRoute = createRoute({
   },
 });
 
+const mangaRoute = createRoute({
+  getParentRoute: () => MainLayoutRoute,
+  path: "/Manga",
+  validateSearch: (search: Record<string, unknown>) => ({
+    id: typeof search.id === "string" ? search.id : "",
+  }),
+  component: Manga,
+
+});
+
 export const routeTree = rootRoute.addChildren([
-  MainLayoutRoute.addChildren([indexRoute, HomeRoute, HotRoute]),
+  MainLayoutRoute.addChildren([indexRoute, HomeRoute, HotRoute, mangaRoute]),
 ]);
 
 export const Router = createRouter({

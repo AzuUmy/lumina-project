@@ -1,3 +1,4 @@
+import { useNavigate } from "@tanstack/react-router";
 import { mangas } from "../../../../mock/prismaMockData";
 
 type LibraryProps = {
@@ -5,6 +6,8 @@ type LibraryProps = {
 };
 
 export function Library({ query = "" }: LibraryProps) {
+  const navigate = useNavigate();
+
   const normalizedQuery = query.trim().toLowerCase();
   const filteredMangas = mangas.filter((manga) => {
     if (!normalizedQuery) return true;
@@ -25,13 +28,15 @@ export function Library({ query = "" }: LibraryProps) {
               </div>
               <div
                 key={manga.id}
+                onClick={() => navigate({to: "/Manga", search: {id: manga.id}})}
                 className="flex items-center flex-col gap-2 mb-2"
               >
-                <div className="h-30 w-20 rounded-md" style={{
-                    backgroundColor: "var(--border)"
-                }
-                    
-                } />
+                <div
+                  className="h-30 w-20 rounded-md"
+                  style={{
+                    backgroundColor: "var(--border)",
+                  }}
+                />
                 <h3
                   className="text-sm font-semibold"
                   style={{ color: "var(--text)" }}
@@ -43,7 +48,10 @@ export function Library({ query = "" }: LibraryProps) {
           ))}
         </div>
         {filteredMangas.length === 0 && (
-          <p className="text-sm opacity-70 p-2" style={{ color: "var(--text)" }}>
+          <p
+            className="text-sm opacity-70 p-2"
+            style={{ color: "var(--text)" }}
+          >
             No manga matches your search.
           </p>
         )}

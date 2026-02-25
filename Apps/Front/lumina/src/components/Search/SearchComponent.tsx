@@ -12,6 +12,8 @@ export function SearchComponenet({
   openSearchOptions,
   radius,
   readonly,
+  value,
+  onValueChange,
 }: SerchComponenetProps) {
   return (
     <section>
@@ -25,6 +27,8 @@ export function SearchComponenet({
             });
           }}
           type="text"
+          value={value ?? ""}
+          onChange={(event) => onValueChange?.(event.target.value)}
           readOnly={readonly}
           placeholder="Search..."
           className="w-85 p-3 border outline-none"

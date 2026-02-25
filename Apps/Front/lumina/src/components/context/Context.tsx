@@ -201,7 +201,7 @@ export function Context({
 
       if (animationPreset === "grow") {
         // `middle` is always centered and should not borrow an external origin point.
-        setFrozenGrowFrom(placement === "middle" ? null : growFrom ?? null);
+        setFrozenGrowFrom(placement === "middle" ? null : (growFrom ?? null));
       } else {
         const px = setTimeout(() => {
           setAnimateIn(true);
@@ -267,8 +267,8 @@ export function Context({
       positionAt
         ? { left: `${positionAt.x}px`, top: `${positionAt.y}px` }
         : isGrowAboveOrigin && frozenGrowFrom
-        ? { left: "50%", top: frozenGrowFrom.y + "px" }
-        : getBasePlacementStyle(placement, edgeSpacing),
+          ? { left: "50%", top: frozenGrowFrom.y + "px" }
+          : getBasePlacementStyle(placement, edgeSpacing),
     [positionAt, isGrowAboveOrigin, frozenGrowFrom, placement, edgeSpacing],
   );
 
@@ -277,8 +277,8 @@ export function Context({
       isGrowAboveOrigin
         ? `translate(-50%, ${growVerticalOffsetCss})`
         : positionAt
-        ? "translate(-50%, -50%)"
-        : getAnchorTransform(placement),
+          ? "translate(-50%, -50%)"
+          : getAnchorTransform(placement),
     [isGrowAboveOrigin, positionAt, placement, growVerticalOffsetCss],
   );
 
