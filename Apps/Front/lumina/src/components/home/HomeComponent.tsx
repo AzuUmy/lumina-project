@@ -16,11 +16,12 @@ export function HomeComponent() {
   const [searchOrigin, setSearchOrigin] = useState<
     { x: number; y: number } | undefined
   >();
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <section>
       <div>
-        <div className="fixed mt-10 w-full z-index-50 show-mobile-only">
+        <div className="fixed mt-10 w-full z-10 show-mobile-only">
           <div className=" flex items-center justify-between pl-10 pr-10 ">
             <div>
               <button
@@ -77,9 +78,14 @@ export function HomeComponent() {
             maxWidth={365}
           >
             <div className="p-3 flex justify-center flex-col">
-              <SearchComponenet radius="10px" />
+              <SearchComponenet
+                radius="10px"
+                readonly={false}
+                value={searchQuery}
+                onValueChange={setSearchQuery}
+              />
               <div className="mt-3">
-                <SearchFilter />
+                <SearchFilter query={searchQuery} />
               </div>
             </div>
           </Context>
@@ -88,6 +94,8 @@ export function HomeComponent() {
       <div className="show-mobile-only relative">
         <div className="absolute top-32 left-[50%] translate-x-[-50%]">
           <SearchComponenet
+            readonly={true}
+            value={searchQuery}
             openSearchOptions={(origin) => {
               setSearchOrigin(origin);
               setOpenSearchOptions(true);
@@ -97,7 +105,7 @@ export function HomeComponent() {
             <GenresCnomponent />
           </div>
           <div className="mt-5">
-            <Library />
+            <Library query={searchQuery} />
           </div>
         </div>
       </div>

@@ -2,13 +2,20 @@ type Point = { x: number; y: number };
 
 type SerchComponenetProps = {
   openSearchOptions?: (origin: Point) => void;
-  radius?: string
+  radius?: string;
+  readonly: boolean;
+  value?: string;
+  onValueChange?: (value: string) => void;
 };
 
-export function SearchComponenet({ openSearchOptions, radius }: SerchComponenetProps) {
+export function SearchComponenet({
+  openSearchOptions,
+  radius,
+  readonly,
+}: SerchComponenetProps) {
   return (
     <section>
-      <div>
+      <div className="flex justify-center">
         <input
           onClick={(event) => {
             const rect = event.currentTarget.getBoundingClientRect();
@@ -18,7 +25,7 @@ export function SearchComponenet({ openSearchOptions, radius }: SerchComponenetP
             });
           }}
           type="text"
-          readOnly
+          readOnly={readonly}
           placeholder="Search..."
           className="w-85 p-3 border outline-none"
           style={{
