@@ -6,6 +6,7 @@ import {
   useState,
   type CSSProperties,
 } from "react";
+import { createPortal } from "react-dom";
 
 type SpacingValue = number | string;
 type ContextSpacing =
@@ -200,7 +201,6 @@ export function Context({
       setHasOpenedCycle(false);
 
       if (animationPreset === "grow") {
-        // `middle` is always centered and should not borrow an external origin point.
         setFrozenGrowFrom(placement === "middle" ? null : (growFrom ?? null));
       } else {
         const px = setTimeout(() => {
@@ -221,19 +221,17 @@ export function Context({
       setHasOpenedCycle(false);
     }, animationMs);
     return () => clearTimeout(timeout);
-  }, [showContext, animationMs, animationPreset]);
+  }, [showContext, animationMs, animationPreset, placement, growFrom]);
 
   useLayoutEffect(() => {
     if (!mounted || animationPreset !== "grow" || !panelRef.current) return;
 
-    // For center/middle grow we don't need an external origin; animate from self center.
     if (!frozenGrowFrom) {
       setGrowOffset({ x: 0, y: 0 });
       setGrowReady(true);
       return;
     }
 
-    // Lock start offset before first visible frame.
     const rect = panelRef.current.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -336,10 +334,10 @@ export function Context({
     growReady,
   ]);
 
-  if (!mounted) return null;
+  if (!mounted || typeof document === "undefined") return null;
 
-  return (
-    <div className="relative">
+  return createPortal(
+    <>
       {showBackdrop && (
         <div
           onClick={closeOnBackdropClick ? onClose : undefined}
@@ -383,6 +381,7 @@ export function Context({
       >
         <div>{children}</div>
       </div>
-    </div>
+    </>,
+    document.body,
   );
 }
