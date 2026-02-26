@@ -41,7 +41,7 @@ export function Library({ query = "" }: LibraryProps) {
                   className="text-sm font-semibold"
                   style={{ color: "var(--text)" }}
                 >
-                  {manga.title}
+                  {manga.title.substring(0, 8).concat("...")}
                 </h3>
               </div>
             </div>
