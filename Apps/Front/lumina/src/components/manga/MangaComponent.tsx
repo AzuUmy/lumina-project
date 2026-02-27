@@ -20,7 +20,7 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
   return (
     <section>
       <div>
-        <div>
+        <div className="fixed left-10">
           <button
             type="button"
             onClick={() => {
@@ -30,7 +30,7 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
               }
               window.history.back();
             }}
-            className="fixed top-0 left-10 mt-10 p-3 rounded-full flex justify-center"
+            className=" top-0 left-10 mt-10 p-3 rounded-full flex justify-center"
             style={{
               backgroundColor: "var(--backdrop)",
               border: "1px solid var(--border)",
@@ -40,7 +40,7 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
             <ArrowBackIosNewRounded />
           </button>
         </div>
-        <div className="fixed left-12 top-36">
+        <div className=" relative left-12 top-36 ">
           <div className="flex gap-3 mb-10">
             {genres
               .filter((g) => genre.some((link) => link.genreId === g.id))
@@ -51,7 +51,7 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
               ))}
           </div>
           <div className="flex items-start gap-5">
-            <div className="p-3 h-46 w-46 bg-(--border)" />
+            <div className="p-3 h-46 w-36  bg-(--border)" />
             <div>
               <div className="font-bold text-xl">{manga?.title}</div>
               <div className="p-5 pl-0">
@@ -60,10 +60,10 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
                   .map((a) => (
                     <span className="bg-(--border) p-1.5 pl-3 pr-3 rounded-full mr-2">
                       {a.name}
-                    </span>
+                    </span> 
                   ))}
               </div>
-              <div>{manga?.description}</div>
+              <div className="pr-10 max-w-60">{manga?.description}</div>
             </div>
           </div>
         </div>

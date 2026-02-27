@@ -65,7 +65,7 @@ body {
 }
 
 .route-transition {
-  will-change: opacity, transform;
+  will-change: auto;
 }
 
 .route-transition-forward {
