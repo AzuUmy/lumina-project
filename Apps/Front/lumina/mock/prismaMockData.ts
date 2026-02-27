@@ -131,7 +131,8 @@ export const mangas: MockManga[] = [
     chapters: 84,
     volumes: 10,
     coverId: "cover_temple_of_glass",
-    description: "A mystery adventure set in a city built entirely from crystal.",
+    description:
+      "A mystery adventure set in a city built entirely from crystal.",
     createdAt: "2026-01-04T10:00:00.000Z",
     updatedAt: "2026-02-18T15:10:00.000Z",
   },
@@ -151,7 +152,8 @@ export const mangas: MockManga[] = [
     chapters: 42,
     volumes: 6,
     coverId: "cover_bloom_theory",
-    description: "Two rivals discover a botanical phenomenon that can alter fate.",
+    description:
+      "Two rivals discover a botanical phenomenon that can alter fate.",
     createdAt: "2026-01-10T10:00:00.000Z",
     updatedAt: "2026-02-18T15:10:00.000Z",
   },
@@ -161,7 +163,8 @@ export const mangas: MockManga[] = [
     chapters: 65,
     volumes: 8,
     coverId: "cover_night_harbor",
-    description: "A thriller where every dock at midnight leads to a different world.",
+    description:
+      "A thriller where every dock at midnight leads to a different world.",
     createdAt: "2026-01-15T10:00:00.000Z",
     updatedAt: "2026-02-18T15:10:00.000Z",
   },
@@ -171,7 +174,8 @@ export const mangas: MockManga[] = [
     chapters: 91,
     volumes: 12,
     coverId: "cover_iron_rain",
-    description: "A war-torn kingdom fights airborne mechs powered by ancient relics.",
+    description:
+      "A war-torn kingdom fights airborne mechs powered by ancient relics.",
     createdAt: "2026-01-18T10:00:00.000Z",
     updatedAt: "2026-02-18T15:10:00.000Z",
   },
@@ -181,7 +185,8 @@ export const mangas: MockManga[] = [
     chapters: 58,
     volumes: 7,
     coverId: "cover_paper_moon_district",
-    description: "A neighborhood of artists hides a conspiracy inside old sketchbooks.",
+    description:
+      "A neighborhood of artists hides a conspiracy inside old sketchbooks.",
     createdAt: "2026-01-20T10:00:00.000Z",
     updatedAt: "2026-02-18T15:10:00.000Z",
   },
@@ -191,7 +196,8 @@ export const mangas: MockManga[] = [
     chapters: 33,
     volumes: 5,
     coverId: "cover_gravity_orchard",
-    description: "Teen inventors discover fruit that bends gravity around their town.",
+    description:
+      "Teen inventors discover fruit that bends gravity around their town.",
     createdAt: "2026-01-24T10:00:00.000Z",
     updatedAt: "2026-02-18T15:10:00.000Z",
   },
@@ -201,7 +207,8 @@ export const mangas: MockManga[] = [
     chapters: 147,
     volumes: 16,
     coverId: "cover_ashes_of_meridian",
-    description: "A fallen knight rebuilds a shattered empire one city at a time.",
+    description:
+      "A fallen knight rebuilds a shattered empire one city at a time.",
     createdAt: "2026-01-26T10:00:00.000Z",
     updatedAt: "2026-02-18T15:10:00.000Z",
   },
@@ -211,7 +218,8 @@ export const mangas: MockManga[] = [
     chapters: 76,
     volumes: 9,
     coverId: "cover_cipher_bloom",
-    description: "A codebreaker and a florist decode messages hidden in rare petals.",
+    description:
+      "A codebreaker and a florist decode messages hidden in rare petals.",
     createdAt: "2026-01-29T10:00:00.000Z",
     updatedAt: "2026-02-18T15:10:00.000Z",
   },
@@ -281,17 +289,50 @@ export const authors: MockAuthor[] = [
 ];
 
 export const mangaAuthors: MockMangaAuthor[] = [
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n001", authorId: "aut_01hzt6p10u8x4t7k9e4q001" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n002", authorId: "aut_01hzt6p10u8x4t7k9e4q001" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n003", authorId: "aut_01hzt6p10u8x4t7k9e4q003" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n004", authorId: "aut_01hzt6p10u8x4t7k9e4q002" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n005", authorId: "aut_01hzt6p10u8x4t7k9e4q001" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n005", authorId: "aut_01hzt6p10u8x4t7k9e4q003" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n006", authorId: "aut_01hzt6p10u8x4t7k9e4q003" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n007", authorId: "aut_01hzt6p10u8x4t7k9e4q002" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n008", authorId: "aut_01hzt6p10u8x4t7k9e4q001" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n009", authorId: "aut_01hzt6p10u8x4t7k9e4q003" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n010", authorId: "aut_01hzt6p10u8x4t7k9e4q002" },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n001",
+    authorId: "aut_01hzt6p10u8x4t7k9e4q001",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n002",
+    authorId: "aut_01hzt6p10u8x4t7k9e4q001",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n003",
+    authorId: "aut_01hzt6p10u8x4t7k9e4q003",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n004",
+    authorId: "aut_01hzt6p10u8x4t7k9e4q002",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n005",
+    authorId: "aut_01hzt6p10u8x4t7k9e4q001",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n005",
+    authorId: "aut_01hzt6p10u8x4t7k9e4q003",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n006",
+    authorId: "aut_01hzt6p10u8x4t7k9e4q003",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n007",
+    authorId: "aut_01hzt6p10u8x4t7k9e4q002",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n008",
+    authorId: "aut_01hzt6p10u8x4t7k9e4q001",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n009",
+    authorId: "aut_01hzt6p10u8x4t7k9e4q003",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n010",
+    authorId: "aut_01hzt6p10u8x4t7k9e4q002",
+  },
 ];
 
 export const genres: MockGenre[] = [
@@ -303,36 +344,153 @@ export const genres: MockGenre[] = [
 ];
 
 export const mangaGenres: MockMangaGenre[] = [
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n001", genreId: "gnr_01hzt6p10u8x4t7k9e4r001" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n001", genreId: "gnr_01hzt6p10u8x4t7k9e4r003" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n002", genreId: "gnr_01hzt6p10u8x4t7k9e4r005" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n002", genreId: "gnr_01hzt6p10u8x4t7k9e4r003" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n003", genreId: "gnr_01hzt6p10u8x4t7k9e4r001" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n003", genreId: "gnr_01hzt6p10u8x4t7k9e4r002" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n004", genreId: "gnr_01hzt6p10u8x4t7k9e4r004" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n005", genreId: "gnr_01hzt6p10u8x4t7k9e4r002" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n005", genreId: "gnr_01hzt6p10u8x4t7k9e4r003" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n006", genreId: "gnr_01hzt6p10u8x4t7k9e4r002" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n006", genreId: "gnr_01hzt6p10u8x4t7k9e4r005" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n007", genreId: "gnr_01hzt6p10u8x4t7k9e4r004" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n007", genreId: "gnr_01hzt6p10u8x4t7k9e4r003" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n008", genreId: "gnr_01hzt6p10u8x4t7k9e4r001" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n008", genreId: "gnr_01hzt6p10u8x4t7k9e4r005" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n009", genreId: "gnr_01hzt6p10u8x4t7k9e4r002" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n009", genreId: "gnr_01hzt6p10u8x4t7k9e4r004" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n010", genreId: "gnr_01hzt6p10u8x4t7k9e4r004" },
-  { mangaId: "mng_01hzt6p10u8x4t7k9e4n010", genreId: "gnr_01hzt6p10u8x4t7k9e4r003" },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n001",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r001",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n001",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r003",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n002",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r005",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n002",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r003",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n003",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r001",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n003",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r002",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n004",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r004",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n005",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r002",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n005",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r003",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n006",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r002",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n006",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r005",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n007",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r004",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n007",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r003",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n008",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r001",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n008",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r005",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n009",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r002",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n009",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r004",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n010",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r004",
+  },
+  {
+    mangaId: "mng_01hzt6p10u8x4t7k9e4n010",
+    genreId: "gnr_01hzt6p10u8x4t7k9e4r003",
+  },
 ];
+
+export type MockMangaWithGenres = MockManga & {
+  genres: MockGenre[];
+};
+export type MockMangaWithAuthors = MockManga & {
+  authors: MockAuthor[];
+};
+export type MockMangaWithRelations = MockManga & {
+  authors: MockAuthor[];
+  genres: MockGenre[];
+};
+
+function isDefined<T>(value: T | undefined): value is T {
+  return value !== undefined;
+}
+
+export const getGenresByMangaId = (mangaId: string): MockGenre[] =>
+  mangaGenres
+    .filter((link) => link.mangaId === mangaId)
+    .map((link) => genres.find((genre) => genre.id === link.genreId))
+    .filter(isDefined);
+
+export const getAuthorsByMangaId = (mangaId: string): MockAuthor[] =>
+  mangaAuthors
+    .filter((link) => link.mangaId === mangaId)
+    .map((link) => authors.find((author) => author.id === link.authorId))
+    .filter(isDefined);
+
+export const mangasWithAuthors: MockMangaWithAuthors[] = mangas.map(
+  (manga) => ({
+    ...manga,
+    authors: getAuthorsByMangaId(manga.id),
+  }),
+);
+
+export const mangasWithGenres: MockMangaWithGenres[] = mangas.map((manga) => ({
+  ...manga,
+  genres: getGenresByMangaId(manga.id),
+}));
+
+export const mangasWithRelations: MockMangaWithRelations[] = mangas.map(
+  (manga) => ({
+    ...manga,
+    authors: getAuthorsByMangaId(manga.id),
+    genres: getGenresByMangaId(manga.id),
+  }),
+);
+
+export const mangaAuthorsByMangaId: Record<string, MockAuthor[]> =
+  Object.fromEntries(
+    mangasWithAuthors.map((manga) => [manga.id, manga.authors]),
+  );
+
+export const mangaGenresByMangaId: Record<string, MockGenre[]> =
+  Object.fromEntries(mangasWithGenres.map((manga) => [manga.id, manga.genres]));
 
 export const mockDatabase = {
   users,
   favoriteLists,
   favoriteListItems,
   mangas,
+  mangasWithAuthors,
+  mangasWithGenres,
+  mangasWithRelations,
   authors,
   mangaAuthors,
+  mangaAuthorsByMangaId,
   genres,
   mangaGenres,
+  mangaGenresByMangaId,
 };
 
 export const mockTenantFavorites = users.map((user) => {
@@ -343,14 +501,20 @@ export const mockTenantFavorites = users.map((user) => {
         .filter((item) => item.favoriteListId === list.id)
         .map((item) => {
           const manga = mangas.find((m) => m.id === item.mangaId) || null;
-          const authorLinks = mangaAuthors.filter((link) => link.mangaId === item.mangaId);
-          const genreLinks = mangaGenres.filter((link) => link.mangaId === item.mangaId);
+          const authorLinks = mangaAuthors.filter(
+            (link) => link.mangaId === item.mangaId,
+          );
+          const genreLinks = mangaGenres.filter(
+            (link) => link.mangaId === item.mangaId,
+          );
 
           return {
             ...item,
             manga,
             authors: authorLinks
-              .map((link) => authors.find((author) => author.id === link.authorId))
+              .map((link) =>
+                authors.find((author) => author.id === link.authorId),
+              )
               .filter(Boolean),
             genres: genreLinks
               .map((link) => genres.find((genre) => genre.id === link.genreId))
