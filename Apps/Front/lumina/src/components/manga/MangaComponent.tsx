@@ -41,14 +41,17 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
           </button>
         </div>
         <div className=" relative left-12 top-36 ">
-          <div className="flex gap-3 mb-10">
-            {genres
-              .filter((g) => genre.some((link) => link.genreId === g.id))
-              .map((g) => (
-                <div className="bg-(--border) p-1.5 pl-3 pr-3 rounded-full text-center">
-                  {g.name}
-                </div>
-              ))}
+          <div className="flex flex-col items-start gap-3">
+            <span>Genres</span>
+            <div className="flex gap-3 mb-10">
+              {genres
+                .filter((g) => genre.some((link) => link.genreId === g.id))
+                .map((g) => (
+                  <div className="bg-(--border) p-1.5 pl-3 pr-3 rounded-full text-center">
+                    {g.name}
+                  </div>
+                ))}
+            </div>
           </div>
           <div className="flex items-start gap-5">
             <div className="p-3 h-46 w-36  bg-(--border)" />
@@ -60,7 +63,7 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
                   .map((a) => (
                     <span className="bg-(--border) p-1.5 pl-3 pr-3 rounded-full mr-2">
                       {a.name}
-                    </span> 
+                    </span>
                   ))}
               </div>
               <div className="pr-10 max-w-60">{manga?.description}</div>
