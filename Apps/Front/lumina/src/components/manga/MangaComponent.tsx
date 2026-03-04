@@ -56,11 +56,10 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
               }
               window.history.back();
             }}
-            className=" top-0 left-10 mt-10 p-3 rounded-full flex justify-center"
+            className=" top-0 left-10 mt-10 p-3 rounded-full flex justify-center backdrop-blur-md"
             style={{
               backgroundColor: "var(--backdrop)",
               border: "1px solid var(--border)",
-              backdropFilter: "blur(30px)",
             }}
             aria-label="Go back"
           >
@@ -73,18 +72,22 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-4 pointer-events-none",
             ].join(" ")}
-            style={{
-              backdropFilter: "blur(30px)",
-            }}
           >
-            <div
-              className="rounded-full px-4 py-2 text-sm font-semibold"
-              style={{
-                backgroundColor: "var(--backdrop)",
-                border: "1px solid var(--border)",
-              }}
-            >
-              {manga?.title}
+            <div className="flex flex-row items-center gap-2">
+              <div
+                className="rounded-full px-4 py-2 text-sm font-semibold"
+                style={{
+                  backgroundColor: "var(--backdrop)",
+                  border: "1px solid var(--border)",
+                }}
+              >
+                {manga?.title}
+              </div>
+              <div>
+                <button className="bg-(--border) p-2 pl-3 pr-3 rounded-full">
+                  Add to list
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -106,7 +109,7 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
               </div>
             </div>
             <div className="flex items-start gap-5">
-              <div className="p-3 h-46 w-36  bg-(--border)" />
+              <div className="p-3 h-52 w-36  bg-(--border)" />
               <div>
                 <div className="font-bold text-xl">{manga?.title}</div>
                 <div ref={titleBlockRef} className="p-5 pl-0">
@@ -122,6 +125,14 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
                     ))}
                 </div>
                 <div className="pr-10 max-w-60">{manga?.description}</div>
+                <div className="flex flex-row gap-2 text-sm mt-3 ">
+                  <button className="bg-(--border) p-2 rounded-full pl-3 pr-3">
+                    Start Reading
+                  </button>
+                  <button className="bg-(--border) p-2 pl-3 pr-3 rounded-full">
+                    Add to list
+                  </button>
+                </div>
               </div>
             </div>
           </div>
