@@ -22,7 +22,7 @@ export function SearchFilter({ query = "" }: SearchFilterProps) {
           <div className="grid grid-cols-3 gap-3">
             {filteredGenres.map((genre) => (
               <div
-                className="rounded-full p-1 pl-3"
+                className="rounded-full p-1 text-center"
                 style={{
                   backgroundColor: "var(--border)",
                 }}
@@ -40,7 +40,7 @@ export function SearchFilter({ query = "" }: SearchFilterProps) {
           <div className="grid grid-cols-3 gap-3">
             {filteredAuthors.map((author) => (
               <div
-                className="rounded-full p-1 pl-3"
+                className="rounded-full p-1 text-center"
                 style={{
                   backgroundColor: "var(--border)",
                 }}

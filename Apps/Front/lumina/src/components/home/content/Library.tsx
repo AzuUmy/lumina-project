@@ -1,25 +1,17 @@
 import { useNavigate } from "@tanstack/react-router";
 import { mangas } from "../../../../mock/prismaMockData";
 
-type LibraryProps = {
-  query?: string;
-};
 
-export function Library({ query = "" }: LibraryProps) {
+export function Library() {
   const navigate = useNavigate();
 
-  const normalizedQuery = query.trim().toLowerCase();
-  const filteredMangas = mangas.filter((manga) => {
-    if (!normalizedQuery) return true;
-    const haystack = `${manga.title} ${manga.description ?? ""} ${manga.chapters ?? ""}`;
-    return haystack.toLowerCase().includes(normalizedQuery);
-  });
+ 
 
   return (
     <section>
       <div className="grid w-full show-mobile-only">
         <div className="grid grid-cols-3 gap-1">
-          {filteredMangas.map((manga) => (
+          {mangas.map((manga) => (
             <div>
               <div className="relative w-0 h-0 p-0">
                 <div className="absolute top-0 left-2 bg-blue-500 font-bold text-sm p-1 rounded-full">
@@ -47,7 +39,7 @@ export function Library({ query = "" }: LibraryProps) {
             </div>
           ))}
         </div>
-        {filteredMangas.length === 0 && (
+        {mangas.length === 0 && (
           <p
             className="text-sm opacity-70 p-2"
             style={{ color: "var(--text)" }}

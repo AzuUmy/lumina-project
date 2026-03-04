@@ -95,7 +95,6 @@ export function HomeComponent() {
         <div className="absolute top-32 left-[50%] translate-x-[-50%]">
           <SearchComponenet
             readonly={true}
-            value={searchQuery}
             openSearchOptions={(origin) => {
               setSearchOrigin(origin);
               setOpenSearchOptions(true);
@@ -105,7 +104,7 @@ export function HomeComponent() {
             <GenresCnomponent />
           </div>
           <div className="mt-5">
-            <Library query={searchQuery} />
+            <Library />
           </div>
         </div>
       </div>
