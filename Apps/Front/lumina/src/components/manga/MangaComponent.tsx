@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowBackIosNewRounded } from "@mui/icons-material";
 import {
   mangas,
@@ -16,6 +16,7 @@ type MangaComponentprops = {
 
 export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
   const [showFloatingTitle, setShowFloatingTitle] = useState(false);
+  const titleBlockRef = useRef<HTMLDivElement | null>(null);
 
   const manga = mangas.find((m) => m.id === mangaId);
   const genre = mangaGenres.filter((genres) => genres.mangaId === mangaId);
@@ -23,14 +24,22 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
 
   useEffect(() => {
     const onScroll = () => {
-      setShowFloatingTitle(window.scrollY > 180);
+      if (!titleBlockRef.current) {
+        setShowFloatingTitle(false);
+        return;
+      }
+
+      const rect = titleBlockRef.current.getBoundingClientRect();
+      setShowFloatingTitle(rect.bottom <= 0);
     };
 
     onScroll();
     window.addEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
 
@@ -100,7 +109,7 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
               <div className="p-3 h-46 w-36  bg-(--border)" />
               <div>
                 <div className="font-bold text-xl">{manga?.title}</div>
-                <div className="p-5 pl-0">
+                <div ref={titleBlockRef} className="p-5 pl-0">
                   {authors
                     .filter((a) => author.map((e) => e.authorId).includes(a.id))
                     .map((a) => (
