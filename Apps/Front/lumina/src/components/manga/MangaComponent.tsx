@@ -5,6 +5,7 @@ import {
   genres,
   mangaAuthors,
   authors,
+  volumes,
 } from "../../../mock/prismaMockData";
 
 type MangaComponentprops = {
@@ -40,34 +41,47 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
             <ArrowBackIosNewRounded />
           </button>
         </div>
-        <div className=" relative left-12 top-36 ">
-          <div className="flex flex-col items-start gap-3">
-            <span>Genres</span>
-            <div className="flex gap-3 mb-10">
-              {genres
-                .filter((g) => genre.some((link) => link.genreId === g.id))
-                .map((g) => (
-                  <div className="bg-(--border) p-1.5 pl-3 pr-3 rounded-full text-center">
-                    {g.name}
-                  </div>
-                ))}
-            </div>
-          </div>
-          <div className="flex items-start gap-5">
-            <div className="p-3 h-46 w-36  bg-(--border)" />
-            <div>
-              <div className="font-bold text-xl">{manga?.title}</div>
-              <div className="p-5 pl-0">
-                {authors
-                  .filter((a) => author.map((e) => e.authorId).includes(a.id))
-                  .map((a) => (
-                    <span className="bg-(--border) p-1.5 pl-3 pr-3 rounded-full mr-2">
-                      {a.name}
-                    </span>
+        <div className=" relative left-12 top-36">
+          <div className="mb-10">
+            <div className="flex flex-col items-start gap-3">
+              <span>Genres</span>
+              <div className="flex gap-3 mb-10">
+                {genres
+                  .filter((g) => genre.some((link) => link.genreId === g.id))
+                  .map((g) => (
+                    <div className="bg-(--border) p-1.5 pl-3 pr-3 rounded-full text-center">
+                      {g.name}
+                    </div>
                   ))}
               </div>
-              <div className="pr-10 max-w-60">{manga?.description}</div>
             </div>
+            <div className="flex items-start gap-5">
+              <div className="p-3 h-46 w-36  bg-(--border)" />
+              <div>
+                <div className="font-bold text-xl">{manga?.title}</div>
+                <div className="p-5 pl-0">
+                  {authors
+                    .filter((a) => author.map((e) => e.authorId).includes(a.id))
+                    .map((a) => (
+                      <span className="bg-(--border) p-1.5 pl-3 pr-3 rounded-full mr-2">
+                        {a.name}
+                      </span>
+                    ))}
+                </div>
+                <div className="pr-10 max-w-60">{manga?.description}</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            {volumes
+              .filter((v) => v.mangaId === mangaId)
+              .map((v) => (
+                <div className="p-3 pl-0 flex flex-row items-center gap-5">
+                  <div className="h-32 w-24 bg-(--border) p-1" />
+                  <div>{"Volume".concat(" ").concat(v.number.toString())}</div>
+                </div>
+              ))}
           </div>
         </div>
       </div>
