@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useCallback, useEffect } from "react";
 import {
   mangas,
   mangaGenres,
@@ -8,18 +8,33 @@ import {
   volumes,
 } from "../../../mock/prismaMockData";
 import { useNavigate } from "@tanstack/react-router";
+import { useTopMenuTitle } from "../../shared/TopMenuTitleContext";
+
 
 type MangaComponentprops = {
   mangaId?: string;
 };
 
 export function MangaComponent({ mangaId }: MangaComponentprops) {
-  const titleBlockRef = useRef<HTMLDivElement | null>(null);
+  const { setTitleElement, setTitleText } = useTopMenuTitle();
+  const titleBlockRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      setTitleElement(node);
+    },
+    [setTitleElement],
+  );
 
   const manga = mangas.find((m) => m.id === mangaId);
   const genre = mangaGenres.filter((genres) => genres.mangaId === mangaId);
   const author = mangaAuthors.filter((authors) => authors.mangaId === mangaId);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setTitleText(manga?.title ?? "");
+    return () => {
+      setTitleText("");
+    };
+  }, [manga?.title, setTitleText]);
 
   return (
     <section>

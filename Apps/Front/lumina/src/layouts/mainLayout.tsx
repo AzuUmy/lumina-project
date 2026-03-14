@@ -1,7 +1,8 @@
 import { Outlet, useRouterState } from "@tanstack/react-router";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { MenuComponent } from "../components/menu/MenuComponent";
 import { TopMenuComponent } from "../components/menu/topMenuComponent";
+import { TopMenuTitleProvider } from "../shared/TopMenuTitleContext";
 
 export default function MainLayout() {
   const { location } = useRouterState();
@@ -10,40 +11,49 @@ export default function MainLayout() {
   const prevIndexRef = useRef(currentIndex);
   const isBackNavigation = currentIndex < prevIndexRef.current;
   prevIndexRef.current = currentIndex;
+  const [titleElement, setTitleElement] = useState<HTMLDivElement | null>(null);
+  const [titleText, setTitleText] = useState("");
 
   return (
-    <div
-      className="min-h-screen"
-      style={{ backgroundColor: "var(--background)", color: "var(--text)" }}
+    <TopMenuTitleProvider
+      titleElement={titleElement}
+      setTitleElement={setTitleElement}
+      titleText={titleText}
+      setTitleText={setTitleText}
     >
       <div
-        key={pathname}
-        className={`route-transition ${
-          isBackNavigation
-            ? "route-transition-back"
-            : "route-transition-forward"
-        }`}
+        className="min-h-screen"
+        style={{ backgroundColor: "var(--background)", color: "var(--text)" }}
       >
-        <Outlet />
-      </div>
+        <div
+          key={pathname}
+          className={`route-transition ${
+            isBackNavigation
+              ? "route-transition-back"
+              : "route-transition-forward"
+          }`}
+        >
+          <Outlet />
+        </div>
 
-      <div className="bg-red-400">
-        {["/Manga", "/Volume"].some((path) => pathname.startsWith(path)) && (
-          <div>
-            <TopMenuComponent />
-          </div>
-        )}
-      </div>
+        <div className="bg-red-400">
+          {["/Manga", "/Volume"].some((path) => pathname.startsWith(path)) && (
+            <div>
+              <TopMenuComponent />
+            </div>
+          )}
+        </div>
 
-      <div>
-        {["/Manga", "/Volume"].some((path) =>
-          pathname.startsWith(path),
-        ) ? null : (
-          <div>
-            <MenuComponent />
-          </div>
-        )}
+        <div>
+          {["/Manga", "/Volume"].some((path) =>
+            pathname.startsWith(path),
+          ) ? null : (
+            <div>
+              <MenuComponent />
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </TopMenuTitleProvider>
   );
 }

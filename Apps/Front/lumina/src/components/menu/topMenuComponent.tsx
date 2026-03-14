@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { ArrowBackIosNewRounded } from "@mui/icons-material";
+import { useTopMenuTitle } from "../../shared/TopMenuTitleContext";
 
 type TopMenuComponentProps = {
   mangaTitle?: string;
@@ -11,16 +12,17 @@ export function TopMenuComponent({
   backOnClik,
 }: TopMenuComponentProps) {
   const [showFloatingTitle, setShowFloatingTitle] = useState(false);
-  const titleBlockRef = useRef<HTMLDivElement | null>(null);
+  const { titleElement, titleText } = useTopMenuTitle();
+  const effectiveTitle = mangaTitle ?? titleText;
 
   useEffect(() => {
     const onScroll = () => {
-      if (!titleBlockRef.current) {
+      if (!titleElement) {
         setShowFloatingTitle(false);
         return;
       }
 
-      const rect = titleBlockRef.current.getBoundingClientRect();
+      const rect = titleElement.getBoundingClientRect();
       setShowFloatingTitle(rect.bottom <= 0);
     };
 
@@ -32,7 +34,7 @@ export function TopMenuComponent({
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [titleElement]);
 
   return (
     <div className="flex gap-5">
@@ -58,7 +60,7 @@ export function TopMenuComponent({
         <div
           className={[
             "fixed left-34 top-11.5",
-            showFloatingTitle && mangaTitle
+            showFloatingTitle && effectiveTitle
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-4 pointer-events-none",
           ].join(" ")}
@@ -71,7 +73,7 @@ export function TopMenuComponent({
                 border: "1px solid var(--border)",
               }}
             >
-              {mangaTitle}
+              {effectiveTitle}
             </div>
             <div>
               <button className="bg-(--border) p-2 pl-3 pr-3 rounded-full">
