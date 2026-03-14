@@ -1,6 +1,7 @@
 import { Outlet, useRouterState } from "@tanstack/react-router";
 import { useRef } from "react";
 import { MenuComponent } from "../components/menu/MenuComponent";
+import { TopMenuComponent } from "../components/menu/topMenuComponent";
 
 export default function MainLayout() {
   const { location } = useRouterState();
@@ -18,17 +19,31 @@ export default function MainLayout() {
       <div
         key={pathname}
         className={`route-transition ${
-          isBackNavigation ? "route-transition-back" : "route-transition-forward"
+          isBackNavigation
+            ? "route-transition-back"
+            : "route-transition-forward"
         }`}
       >
         <Outlet />
       </div>
 
-      {pathname.startsWith("/Manga") ? null : (
-        <div>
-          <MenuComponent />
-        </div>
-      )}
+      <div className="bg-red-400">
+        {["/Manga", "/Volume"].some((path) => pathname.startsWith(path)) && (
+          <div>
+            <TopMenuComponent />
+          </div>
+        )}
+      </div>
+
+      <div>
+        {["/Manga", "/Volume"].some((path) =>
+          pathname.startsWith(path),
+        ) ? null : (
+          <div>
+            <MenuComponent />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

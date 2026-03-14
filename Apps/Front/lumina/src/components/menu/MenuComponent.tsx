@@ -21,7 +21,8 @@ export function MenuComponent() {
           <div
             className="rounded-full flex justify-center gap-5 backdrop-blur-md border"
             style={{
-              backgroundColor: "color-mix(in srgb, var(--border) 72%, transparent)",
+              backgroundColor:
+                "color-mix(in srgb, var(--border) 72%, transparent)",
               borderColor: "var(--border)",
               color: "var(--text)",
               padding: "0.85rem 1rem",
@@ -37,7 +38,11 @@ export function MenuComponent() {
                 transform: isHome ? "scale(1.08)" : "scale(1)",
               }}
             >
-              {isHome ? <HomeRounded className="w-8! h-8!" /> : <HomeOutlined className="w-7! h-7!" />}
+              {isHome ? (
+                <HomeRounded className="w-8! h-8!" />
+              ) : (
+                <HomeOutlined className="w-7! h-7!" />
+              )}
             </button>
 
             <button

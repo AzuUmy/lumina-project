@@ -4,9 +4,6 @@ import { mangas } from "../../../../mock/prismaMockData";
 
 export function Library() {
   const navigate = useNavigate();
-
- 
-
   return (
     <section>
       <div className="grid w-full show-mobile-only">

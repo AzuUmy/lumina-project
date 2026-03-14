@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from "react";
-import { ArrowBackIosNewRounded } from "@mui/icons-material";
+import { useRef } from "react";
 import {
   mangas,
   mangaGenres,
@@ -8,89 +7,23 @@ import {
   authors,
   volumes,
 } from "../../../mock/prismaMockData";
+import { useNavigate } from "@tanstack/react-router";
 
 type MangaComponentprops = {
   mangaId?: string;
-  backOnClik?: () => void;
 };
 
-export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
-  const [showFloatingTitle, setShowFloatingTitle] = useState(false);
+export function MangaComponent({ mangaId }: MangaComponentprops) {
   const titleBlockRef = useRef<HTMLDivElement | null>(null);
 
   const manga = mangas.find((m) => m.id === mangaId);
   const genre = mangaGenres.filter((genres) => genres.mangaId === mangaId);
   const author = mangaAuthors.filter((authors) => authors.mangaId === mangaId);
-
-  useEffect(() => {
-    const onScroll = () => {
-      if (!titleBlockRef.current) {
-        setShowFloatingTitle(false);
-        return;
-      }
-
-      const rect = titleBlockRef.current.getBoundingClientRect();
-      setShowFloatingTitle(rect.bottom <= 0);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    window.addEventListener("resize", onScroll);
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
+  const navigate = useNavigate();
 
   return (
     <section>
       <div>
-        <div className="fixed left-10">
-          <button
-            type="button"
-            onClick={() => {
-              if (backOnClik) {
-                backOnClik();
-                return;
-              }
-              window.history.back();
-            }}
-            className=" top-0 left-10 mt-10 p-3 rounded-full flex justify-center backdrop-blur-md"
-            style={{
-              backgroundColor: "var(--backdrop)",
-              border: "1px solid var(--border)",
-            }}
-            aria-label="Go back"
-          >
-            <ArrowBackIosNewRounded />
-          </button>
-          <div
-            className={[
-              "fixed left-34 top-11.5",
-              showFloatingTitle && manga?.title
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4 pointer-events-none",
-            ].join(" ")}
-          >
-            <div className="flex flex-row items-center gap-2">
-              <div
-                className="rounded-full px-4 py-2 text-sm font-semibold"
-                style={{
-                  backgroundColor: "var(--backdrop)",
-                  border: "1px solid var(--border)",
-                }}
-              >
-                {manga?.title}
-              </div>
-              <div>
-                <button className="bg-(--border) p-2 pl-3 pr-3 rounded-full">
-                  Add to list
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
         <div className=" relative left-12 top-36">
           <div className="mb-10">
             <div className="flex flex-col items-start gap-3">
@@ -142,6 +75,9 @@ export function MangaComponent({ backOnClik, mangaId }: MangaComponentprops) {
               .filter((v) => v.mangaId === mangaId)
               .map((v) => (
                 <div
+                  onClick={() =>
+                    navigate({ to: "/Volume", search: { id: v.id } })
+                  }
                   key={v.id}
                   className="p-3 pl-0 flex flex-row items-center gap-5"
                 >
