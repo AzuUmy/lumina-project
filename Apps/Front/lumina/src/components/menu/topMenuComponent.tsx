@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ArrowBackIosNewRounded } from "@mui/icons-material";
 import { useTopMenuTitle } from "../../shared/TopMenuTitleContext";
+import { Add } from "@mui/icons-material";
 
 type TopMenuComponentProps = {
   mangaTitle?: string;
@@ -38,8 +39,13 @@ export function TopMenuComponent({
 
   return (
     <div className="flex">
-      <div className="fixed left-0 top-0 z-50 w-screen p-10 ">
-        <div className="flex items-center justify-between bg-white/10 p-1 backdrop-blur-md rounded-full">
+      <div
+        className={[
+          "fixed left-0 top-0 z-50 p-10",
+          showFloatingTitle && effectiveTitle ? "w-screen" : "w-auto",
+        ].join(" ")}
+      >
+        <div className="flex items-center justify-between  bg-(--border) p-1 backdrop-blur-md rounded-full" style={{ borderColor: "var(--border)", borderWidth: "1px" }}>
           <button
             type="button"
             onClick={() => {
@@ -60,9 +66,7 @@ export function TopMenuComponent({
           </button>
           <div
             className={[
-              showFloatingTitle && effectiveTitle
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4 pointer-events-none",
+              showFloatingTitle && effectiveTitle ? "flex" : "hidden",
             ].join(" ")}
           >
             <div className="flex flex-row  items-center gap-2 p-1">
@@ -74,12 +78,16 @@ export function TopMenuComponent({
                 }}
               >
                 {effectiveTitle
-                  .slice(0, 19)
-                  .concat(effectiveTitle.length > 20 ? "..." : "")}
+                  .slice(0, 14)
+                  .concat(effectiveTitle.length > 15 ? "..." : "")}
               </div>
               <div>
                 <button className="bg-(--border) p-2 pl-3 pr-3 rounded-full">
-                  Add to list
+                    <div className="flex items-center gap-2.5">
+                        <Add className="rounded-full border-2 border-(--border) bg-(--border)" />
+                        <p>Add to list</p>
+                    </div>
+                  
                 </button>
               </div>
             </div>

@@ -21,9 +21,9 @@ export function HomeComponent() {
   return (
     <section>
       <div>
-        <div className="fixed mt-10 w-full z-10 show-mobile-only">
-          <div className=" flex items-center justify-between pl-10 pr-10 ">
-            <div>
+        <div className="fixed  w-full z-10 show-mobile-only p-12.5 ">
+          <div className=" flex items-center justify-between  p-1  rounded-full  ">
+            <div className="bg-(--border) p-1 rounded-full" style={{ borderColor: "var(--border)", borderWidth: "1px" }}>
               <button
                 type="button"
                 onClick={(event) => {
@@ -43,7 +43,7 @@ export function HomeComponent() {
               />
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-5 bg-(--border)  backdrop-blur-md p-2 rounded-full" style={{borderColor: "var(--border)", borderWidth: "1px"}}>
               <div onClick={toggleTheme}>
                 {resolvedTheme === "light" ? <DarkMode /> : <Sunny />}
               </div>
