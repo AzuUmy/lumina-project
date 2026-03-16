@@ -30,17 +30,27 @@ export function VolumeComponent({ volumeId }: volumeProps) {
         {!volume || volume.id === undefined ? (
           <div>Volume not Founded</div>
         ) : (
-          <div>
-            <div>
-              <h1 ref={titleBlockRef}>{volume.title}</h1>
+          <div className="mt-25 p-9">
+            <div className="flex  items-center gap-6 p-3">
+              <div className="p-1 h-20 w-15 bg-(--border)" />
+
+              <div className="flex flex-col">
+                <h1 ref={titleBlockRef} className="font-bold">
+                  {volume.title}
+                </h1>
+                <h2>
+                  {String(volume.chapterCount).concat(" ").concat("Chapters")}
+                </h2>
+              </div>
             </div>
-            <div className="grid grid-cols-4   gap-2 place-items-center p-5">
+            <div className="grid grid-cols-4 place-items-center p-2 gap-2">
               {!chapter || chapter.length === 0 ? (
                 <div>No Chapters Founded</div>
               ) : (
                 chapter.map((c) => (
-                  <div key={c.id}>
-                    <div className="bg-(--border) p-3 h-36 w-24 " />
+                  <div key={c.id} className="flex flex-col items-center gap-1">
+                    <div className="bg-(--border) p-3 h-30 w-20  " />
+                    <span>{c.title}</span>
                   </div>
                 ))
               )}
