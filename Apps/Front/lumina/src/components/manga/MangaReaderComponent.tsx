@@ -33,11 +33,11 @@ export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
   const visiblePages = chapterPages.slice(clampedIndex, clampedIndex + 5);
 
   return (
-    <section className="flex flex-col items-center gap-4 mt-35">
+    <section className="flex flex-col items-center gap-4 mt-35 overflow-x-hidden">
       <div>
         <MangaReaderNavComponent pagesInfo={chapterPages} />
       </div>
-      <div className="relative h-150 w-105 bg-white">
+      <div className="relative h-150 w-105 ml-4 bg-white">
         {visiblePages.map((p, index) => {
           const offset = index * 12;
           const zIndex = visiblePages.length - index;
