@@ -1,7 +1,7 @@
 import { Outlet, useRouterState } from "@tanstack/react-router";
 import { useRef, useState } from "react";
-import { MenuComponent } from "../components/menu/MenuComponent";
-import { TopMenuComponent } from "../components/menu/topMenuComponent";
+import { MenuComponent } from "../components/Navigation/MenuComponent";
+import { TopMenuComponent } from "../components/Navigation/TopMenuComponent";
 import { TopMenuTitleProvider } from "../shared/TopMenuTitleContext";
 
 export default function MainLayout() {

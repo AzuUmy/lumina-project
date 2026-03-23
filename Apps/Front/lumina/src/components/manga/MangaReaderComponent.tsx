@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { pages } from "../../../mock/prismaMockData";
+import { MangaReaderNavComponent } from "../Navigation/MangaReaderNavComponent";
+import { ArrowBackIosNewRounded } from "@mui/icons-material";
 
 export type MangaReaderComponentProps = {
   chapterId?: string;
@@ -28,11 +30,14 @@ export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
     pageIndex,
     Math.max(chapterPages.length - 1, 0),
   );
-  const visiblePages = chapterPages.slice(clampedIndex, clampedIndex + 4);
+  const visiblePages = chapterPages.slice(clampedIndex, clampedIndex + 5);
 
   return (
-    <section className="flex flex-col items-center gap-4 mt-30">
-      <div className="relative h-150 w-105">
+    <section className="flex flex-col items-center gap-4 mt-35">
+      <div>
+        <MangaReaderNavComponent pagesInfo={chapterPages} />
+      </div>
+      <div className="relative h-150 w-105 bg-white">
         {visiblePages.map((p, index) => {
           const offset = index * 12;
           const zIndex = visiblePages.length - index;
@@ -40,39 +45,45 @@ export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
           return (
             <img
               key={p.id}
-              className="absolute top-0 left-0 h-full w-full rounded shadow-lg object-cover transition-transform"
+              className="absolute top-0 left-0 h-full w-full rounded shadow-lg  object-cover transition-transform"
               style={{
                 transform: `translateX(${offset}px)`,
                 zIndex,
               }}
               src={p.imageUrl}
-              alt={`Page ${p.pageNumber}`}
             />
           );
         })}
+
+        <div className="bg-black absolute left-15 top-8 p-1 w-8 h-8 text-center rounded-full font-bold text-white">
+          <p>{chapterPages[clampedIndex]?.pageNumber ?? 1}</p>
+        </div>
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-3/5 flex items-center justify-between w-full p-3 pl-20 pr-12 gap-3 z-50">
         <button
-          className="rounded border px-3 py-1"
-          onClick={() => setPageIndex((i) => Math.max(i - 1, 0))}
-          disabled={clampedIndex === 0}
-        >
-          Prev
-        </button>
-        <div>
-          {chapterPages[clampedIndex]?.pageNumber ?? 1} /{
-            chapterPages.length
-          }
-        </div>
-        <button
-          className="rounded border px-3 py-1"
+          className="top-0 left-10 p-3 rounded-full flex justify-center backdrop-blur-md text-black"
+          style={{
+            backgroundColor: "var(--border)",
+            border: "1px solid var(--border)",
+          }}
           onClick={() =>
             setPageIndex((i) => Math.min(i + 1, chapterPages.length - 1))
           }
           disabled={clampedIndex >= chapterPages.length - 1}
         >
-          Next
+          <ArrowBackIosNewRounded />
+        </button>
+        <button
+          className=" top-0 left-10 p-3 rounded-full flex justify-center backdrop-blur-md text-black"
+          style={{
+            backgroundColor: "var(--border)",
+            border: "1px solid var(--border)",
+          }}
+          onClick={() => setPageIndex((i) => Math.max(i - 1, 0))}
+          disabled={clampedIndex === 0}
+        >
+          <ArrowBackIosNewRounded className="rotate-180" />
         </button>
       </div>
     </section>
