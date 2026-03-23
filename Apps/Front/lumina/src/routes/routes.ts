@@ -10,6 +10,7 @@ import MainLayout from "../layouts/mainLayout";
 import { Hot } from "../pages/Hot";
 import { Manga } from "../pages/Manga";
 import { Volume } from "../pages/Volume";
+import { Reader } from "../pages/Reader";
 
 const rootRoute = createRootRoute({
   component: Outlet,
@@ -59,6 +60,16 @@ const volumeRoute = createRoute({
   component: Volume,
 });
 
+const ReaderRoute = createRoute({
+  getParentRoute: () => MainLayoutRoute,
+  path: "/Reader",
+  validateSearch: (search: Record<string, unknown>) => ({
+    id: typeof search.id === "string" ? search.id : "",
+  }),
+  component: Reader,
+});
+
+
 export const routeTree = rootRoute.addChildren([
   MainLayoutRoute.addChildren([
     indexRoute,
@@ -66,6 +77,7 @@ export const routeTree = rootRoute.addChildren([
     HotRoute,
     mangaRoute,
     volumeRoute,
+    ReaderRoute
   ]),
 ]);
 

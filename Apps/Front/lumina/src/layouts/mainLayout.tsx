@@ -37,7 +37,7 @@ export default function MainLayout() {
         </div>
 
         <div className="bg-red-400">
-          {["/Manga", "/Volume"].some((path) => pathname.startsWith(path)) && (
+          {["/Manga", "/Volume", "/Reader"].some((path) => pathname.startsWith(path)) && (
             <div>
               <TopMenuComponent />
             </div>
@@ -45,7 +45,7 @@ export default function MainLayout() {
         </div>
 
         <div>
-          {["/Manga", "/Volume"].some((path) =>
+          {["/Manga", "/Volume", "/Reader"].some((path) =>
             pathname.startsWith(path),
           ) ? null : (
             <div>

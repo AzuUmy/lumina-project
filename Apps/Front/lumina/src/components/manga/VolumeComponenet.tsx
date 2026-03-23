@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { volumes, chapters } from "../../../mock/prismaMockData";
 import { useTopMenuTitle } from "../../shared/TopMenuTitleContext";
 import { List, ViewModuleRounded } from "@mui/icons-material";
+import { useNavigate } from "@tanstack/react-router";
+
 
 type volumeProps = {
   volumeId?: string;
@@ -25,6 +27,9 @@ export function VolumeComponent({ volumeId }: volumeProps) {
       setTitleText("");
     };
   }, [setTitleText, volume?.title]);
+
+    const navigate = useNavigate();
+
 
   return (
     <section>
@@ -84,7 +89,7 @@ export function VolumeComponent({ volumeId }: volumeProps) {
                 <div>No Chapters Founded</div>
               ) : (
                 chapter.map((c) => (
-                  <div key={c.id} className="flex flex-col items-center gap-1">
+                  <div onClick={() => navigate({ to: `/Reader`, search: { id: c.id } })  } key={c.id} className="flex flex-col items-center gap-1">
                     {listIcon ? (
                       <div className="flex items-center gap-3 bg-(--border) w-90 p-1 rounded-lg">
                         <div className="bg-(--border) p-3 h-10 w-10  " />

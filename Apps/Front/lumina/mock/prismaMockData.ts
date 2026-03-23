@@ -262,20 +262,6 @@ export const mangas: MockManga[] = [
   },
 ];
 
-const MIN_VOLUMES_PER_MANGA = 5;
-const MIN_CHAPTERS_PER_VOLUME = 5;
-const MIN_PAGES_PER_CHAPTER = 20;
-
-function padNumber(value: number, size: number): string {
-  return String(value).padStart(size, "0");
-}
-
-function getDistributedCount(total: number, parts: number, index: number): number {
-  const base = Math.floor(total / parts);
-  const remainder = total % parts;
-
-  return base + (index < remainder ? 1 : 0);
-}
 
 export const volumes: MockVolume[] = [
   {
