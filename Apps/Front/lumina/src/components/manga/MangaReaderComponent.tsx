@@ -34,7 +34,7 @@ export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
 
   return (
     <section className="flex flex-col items-center gap-4 mt-35 overflow-x-hidden">
-      <div>
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-100 p-4.5">
         <MangaReaderNavComponent pagesInfo={chapterPages} />
       </div>
       <div className="relative h-150 w-105 ml-4 bg-white">
@@ -55,7 +55,7 @@ export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
           );
         })}
 
-        <div className="bg-black absolute left-15 top-8 p-1 w-8 h-8 text-center rounded-full font-bold text-white">
+        <div className="bg-black relative left-15 top-3 p-1 w-8 h-8 text-center rounded-full font-bold text-white">
           <p>{chapterPages[clampedIndex]?.pageNumber ?? 1}</p>
         </div>
       </div>
