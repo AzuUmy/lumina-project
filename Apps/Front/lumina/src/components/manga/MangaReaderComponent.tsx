@@ -32,6 +32,10 @@ export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
   );
   const visiblePages = chapterPages.slice(clampedIndex, clampedIndex + 5);
 
+  const maxStack = 5;
+  const visibleCount = Math.min(maxStack, chapterPages.length - clampedIndex);
+  const stackOffset = (visibleCount - 1) * 12;
+
   return (
     <section className="flex flex-col items-center gap-4 mt-35 overflow-x-hidden">
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full z-100 p-4.5 ml-2">
@@ -55,7 +59,10 @@ export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
           );
         })}
 
-        <div className="bg-black relative left-15 top-3 p-1 w-8 h-8 text-center rounded-full font-bold text-white">
+        <div
+          className="bg-black relative top-2.5 p-1 w-8 h-8 text-center rounded-full font-bold text-white"
+          style={{ left: `${stackOffset + 7}px` }}
+        >
           <p>{chapterPages[clampedIndex]?.pageNumber ?? 1}</p>
         </div>
       </div>

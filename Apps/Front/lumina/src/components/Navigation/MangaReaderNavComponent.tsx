@@ -8,7 +8,13 @@ export function MangaReaderNavComponent({
   pagesInfo,
 }: MangaReaderNavComponentProps) {
   return (
-    <div className="flex flex-nowrap p-5 gap-2.5 bg-(--border) rounded-full backdrop-blur-lg overflow-x-auto w-full max-w-full min-w-0">
+    <div
+      className="flex flex-nowrap p-5 gap-1.5 rounded-full backdrop-blur-lg overflow-x-auto w-full max-w-full min-w-0"
+      style={{
+        backgroundColor: "color-mix(in srgb, var(--border) 72%, transparent)",
+        border: "1px solid var(--border)",
+      }}
+    >
       {pagesInfo.map((p) => (
         <div key={p.id} className="shrink-0">
           <img
