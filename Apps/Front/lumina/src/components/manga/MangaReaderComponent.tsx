@@ -67,12 +67,13 @@ export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
         </div>
       </div>
 
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 translate-y-3/5 flex items-center justify-between w-full p-3 pl-20 pr-12 gap-3 z-50">
+      <div className="absolute left-1/2 top-[45.5%] -translate-x-1/2 translate-y-3/5 flex items-center justify-between w-full p-3 pl-20 pr-12 gap-3 z-50">
         <button
           className="top-0 left-10 p-3 rounded-full flex justify-center backdrop-blur-md text-black"
           style={{
             backgroundColor: "var(--border)",
             border: "1px solid var(--border)",
+            marginLeft: `${stackOffset - 8}px`,
           }}
           onClick={() =>
             setPageIndex((i) => Math.min(i + 1, chapterPages.length - 1))
