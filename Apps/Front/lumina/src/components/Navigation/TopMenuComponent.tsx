@@ -1,20 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { ArrowBackIosNewRounded } from "@mui/icons-material";
 import { useTopMenuTitle } from "../../shared/TopMenuTitleContext";
 import { Add } from "@mui/icons-material";
 
 type TopMenuComponentProps = {
   mangaTitle?: string;
+  cutomComp?: ReactNode;
   backOnClik?: () => void;
+  alwaysShowCustomComp?: boolean;
+  showTitle?: boolean;
+  showDefaultButton?: boolean;
 };
 
 export function TopMenuComponent({
   mangaTitle,
+  cutomComp,
   backOnClik,
+  alwaysShowCustomComp,
+  showTitle = true,
+  showDefaultButton = true,
 }: TopMenuComponentProps) {
   const [showFloatingTitle, setShowFloatingTitle] = useState(false);
-  const { titleElement, titleText } = useTopMenuTitle();
+  const { titleElement, titleText, customComp: contextCustomComp, alwaysShowTopMenu, showDefaultButton: contextShowDefaultButton } = useTopMenuTitle();
   const effectiveTitle = mangaTitle ?? titleText;
+  const resolvedCustomComp = cutomComp ?? contextCustomComp;
+  const shouldAlwaysShow = alwaysShowCustomComp || alwaysShowTopMenu;
+  const resolvedShowDefaultButton = contextShowDefaultButton && showDefaultButton;
+  const shouldShowBar = shouldAlwaysShow || (showFloatingTitle && (effectiveTitle || resolvedCustomComp || resolvedShowDefaultButton));
 
   useEffect(() => {
     const onScroll = () => {
@@ -42,8 +54,12 @@ export function TopMenuComponent({
       <div
         className={[
           "fixed left-0 top-0 z-50 p-10",
-          showFloatingTitle && effectiveTitle ? "w-screen" : "w-auto",
-        ].join(" ")}
+          shouldAlwaysShow
+            ? "w-screen"
+            : showFloatingTitle && effectiveTitle
+              ? "w-screen"
+              : "w-auto",
+        ].join(" ")}  
       >
         <div className="flex items-center justify-between  bg-(--border) p-1 backdrop-blur-md rounded-full" style={{ borderColor: "var(--border)", borderWidth: "1px" }}>
           <button
@@ -66,30 +82,42 @@ export function TopMenuComponent({
           </button>
           <div
             className={[
-              showFloatingTitle && effectiveTitle ? "flex" : "hidden",
+              shouldShowBar ? "flex" : "hidden",
             ].join(" ")}
           >
             <div className="flex flex-row  items-center gap-2 p-1">
-              <div
-                className="rounded-full px-4 py-2 text-sm font-semibold"
-                style={{
-                  backgroundColor: "var(--backdrop)",
-                  border: "1px solid var(--border)",
-                }}
-              >
-                {effectiveTitle
-                  .slice(0, 14)
-                  .concat(effectiveTitle.length > 15 ? "..." : "")}
-              </div>
-              <div>
-                <button className="bg-(--border) p-2 pl-3 pr-3 rounded-full">
+              {showTitle && effectiveTitle ? (
+                <div
+                  className="rounded-full px-4 py-2 text-sm font-semibold"
+                  style={{
+                    backgroundColor: "var(--backdrop)",
+                    border: "1px solid var(--border)",
+                  }}
+                >
+                  {effectiveTitle
+                    .slice(0, 14)
+                    .concat(effectiveTitle.length > 15 ? "..." : "")}
+                </div>
+              ) : null}
+              {resolvedCustomComp ? (
+                <div
+                  className={[
+                    shouldAlwaysShow ? "flex" : showFloatingTitle ? "flex" : "hidden",
+                  ].join(" ")}
+                >
+                  {resolvedCustomComp}
+                </div>
+              ) : null}
+              {resolvedShowDefaultButton ? (
+                <div>
+                  <button className="bg-(--border) p-2 pl-3 pr-3 rounded-full">
                     <div className="flex items-center gap-2.5">
-                        <Add className="rounded-full border-2 border-(--border) bg-(--border)" />
-                        <p>Add to list</p>
+                      <Add className="rounded-full border-2 border-(--border) bg-(--border)" />
+                      <p>Add to list</p>
                     </div>
-                  
-                </button>
-              </div>
+                  </button>
+                </div>
+              ) : null}
             </div>
           </div>
         </div>

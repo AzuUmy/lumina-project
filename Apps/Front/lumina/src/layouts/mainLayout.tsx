@@ -1,5 +1,6 @@
 import { Outlet, useRouterState } from "@tanstack/react-router";
 import { useRef, useState } from "react";
+import type { ReactNode } from "react";
 import { MenuComponent } from "../components/Navigation/MenuComponent";
 import { TopMenuComponent } from "../components/Navigation/TopMenuComponent";
 import { TopMenuTitleProvider } from "../shared/TopMenuTitleContext";
@@ -13,6 +14,9 @@ export default function MainLayout() {
   prevIndexRef.current = currentIndex;
   const [titleElement, setTitleElement] = useState<HTMLDivElement | null>(null);
   const [titleText, setTitleText] = useState("");
+  const [customComp, setCustomComp] = useState<ReactNode | null>(null);
+  const [alwaysShowTopMenu, setAlwaysShowTopMenu] = useState(false);
+  const [showDefaultButton, setShowDefaultButton] = useState(true);
 
   return (
     <TopMenuTitleProvider
@@ -20,6 +24,12 @@ export default function MainLayout() {
       setTitleElement={setTitleElement}
       titleText={titleText}
       setTitleText={setTitleText}
+      customComp={customComp}
+      setCustomComp={setCustomComp}
+      alwaysShowTopMenu={alwaysShowTopMenu}
+      setAlwaysShowTopMenu={setAlwaysShowTopMenu}
+      showDefaultButton={showDefaultButton}
+      setShowDefaultButton={setShowDefaultButton}
     >
       <div
         className="min-h-screen"
