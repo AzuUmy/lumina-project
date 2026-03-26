@@ -1,4 +1,7 @@
 import { ArrowBackIosNewRounded } from "@mui/icons-material";
+import { Context } from "../context/Context";
+import { useState } from "react";
+import { ChaptersModal } from "../modal/ChaptersModal";
 
 export type NavBetwemChaptersProps = {
   currentChapter?: string;
@@ -11,34 +14,45 @@ export function NavBetwemChapters({
   volumeId,
   currentChapterId,
 }: NavBetwemChaptersProps) {
+  const [openUserContext, setOpenUserContext] = useState(false);
+
   return (
     <section>
-      <div className="flex justify-between items-center gap-6">
-        <button
-          className="top-0 left-10 p-2 rounded-full flex justify-center backdrop-blur-md text-white"
-          style={{
-            backgroundColor: "var(--border)",
-            border: "1px solid var(--border)",
-          }}
-        >
-          {" "}
-          <ArrowBackIosNewRounded className="p-1" />
-        </button>
-        <div>
-          <span>chapter 1</span>
+      <div onClick={() => setOpenUserContext(true)}>
+        <div className="flex justify-between items-center gap-13">
+          <button
+            className="top-0 left-10 p-2 rounded-full flex justify-center backdrop-blur-md text-white"
+            style={{
+              backgroundColor: "var(--border)",
+              border: "1px solid var(--border)",
+            }}
+          >
+            {" "}
+            <ArrowBackIosNewRounded className="p-1" />
+          </button>
+          <div>
+            <span>chapter 1</span>
+          </div>
+          <button
+            className="top-0 left-10 p-2 rounded-full flex justify-center backdrop-blur-md text-white"
+            style={{
+              backgroundColor: "var(--border)",
+              border: "1px solid var(--border)",
+            }}
+          >
+            {" "}
+            <ArrowBackIosNewRounded className="rotate-180 p-1" />
+          </button>
         </div>
-
-        <button
-          className="top-0 left-10 p-2 rounded-full flex justify-center backdrop-blur-md text-white"
-          style={{
-            backgroundColor: "var(--border)",
-            border: "1px solid var(--border)",
-          }}
-        >
-          {" "}
-          <ArrowBackIosNewRounded className="rotate-180 p-1" />
-        </button>
       </div>
+      <Context
+        showContext={openUserContext}
+        onClose={() => setOpenUserContext(false)}
+        placement="bottom"
+        animationPreset="slide"
+      >
+        <ChaptersModal />
+      </Context>
     </section>
   );
 }

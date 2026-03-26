@@ -4,13 +4,21 @@ import { MangaReaderNavComponent } from "../Navigation/MangaReaderNavComponent";
 import { ArrowBackIosNewRounded } from "@mui/icons-material";
 import { useTopMenuTitle } from "../../shared/TopMenuTitleContext";
 import { NavBetwemChapters } from "../Navigation/NavBetwemChapters";
+import { Context } from "../context/Context";
+import { ChaptersModal } from "../modal/ChaptersModal";
 
 export type MangaReaderComponentProps = {
   chapterId?: string;
 };
 
 export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
-  const { setTitleElement, setTitleText, setCustomComp, setAlwaysShowTopMenu, setShowDefaultButton } = useTopMenuTitle();
+  const {
+    setTitleElement,
+    setTitleText,
+    setCustomComp,
+    setAlwaysShowTopMenu,
+    setShowDefaultButton,
+  } = useTopMenuTitle();
 
   const titleBlockRef = useCallback(
     (node: HTMLDivElement | null) => {
@@ -91,7 +99,7 @@ export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
           <p>{chapterPages[clampedIndex]?.pageNumber ?? 1}</p>
         </div>
       </div>
-      <div className="absolute left-1/2 top-[45.5%] -translate-x-1/2 translate-y-3/5 flex items-center justify-between w-full p-3 pl-20 pr-12 gap-3 z-50">
+      <div className="absolute left-1/2 top-[45.5%] -translate-x-1/2 translate-y-3/5 flex items-center justify-between w-full p-3 pl-20 pr-12 gap-3 z-10">
         <button
           className="top-0 left-10 p-3 rounded-full flex justify-center backdrop-blur-md text-black"
           style={{

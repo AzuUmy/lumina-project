@@ -354,7 +354,7 @@ export function Context({
 
       <div
         ref={panelRef}
-        className={`fixed z-20 ${className ?? ""}`}
+        className={`fixed z-100 ${className ?? ""}`}
         style={{
           backgroundColor: "var(--surface)",
           color: "var(--text)",
