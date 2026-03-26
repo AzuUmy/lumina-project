@@ -150,7 +150,7 @@ function composeTransform(anchor: string, dynamicTransform: string): string {
 function getRadius(placement: ContextPlacement): string {
   switch (placement) {
     case "bottom":
-      return "1.5rem 1.5rem 0 0";
+      return "1.5rem 1.5rem 1.5rem 1.5rem";
     case "top":
       return "0 0 1.5rem 1.5rem";
     case "left":

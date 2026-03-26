@@ -16,7 +16,6 @@ export function NavBetwemChapters({
 }: NavBetwemChaptersProps) {
   const [openUserContext, setOpenUserContext] = useState(false);
 
-
   return (
     <section>
       <div onClick={() => setOpenUserContext(true)}>
@@ -51,8 +50,12 @@ export function NavBetwemChapters({
         onClose={() => setOpenUserContext(false)}
         placement="bottom"
         animationPreset="slide"
+        spacing={5}
       >
-        <ChaptersModal volumeId={volumeId} currentChapterId={currentChapterId} />
+        <ChaptersModal
+          volumeId={volumeId}
+          currentChapterId={currentChapterId}
+        />
       </Context>
     </section>
   );
