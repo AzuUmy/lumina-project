@@ -16,27 +16,28 @@ export function NavBetwemChapters({
 }: NavBetwemChaptersProps) {
   const [openUserContext, setOpenUserContext] = useState(false);
 
+
   return (
     <section>
       <div onClick={() => setOpenUserContext(true)}>
-        <div className="flex justify-between items-center gap-13">
+        <div className="flex justify-between items-center gap-10">
           <button
             className="top-0 left-10 p-2 rounded-full flex justify-center backdrop-blur-md text-white"
             style={{
-              backgroundColor: "var(--border)",
+              backgroundColor: "var(--backdrop)",
               border: "1px solid var(--border)",
             }}
           >
             {" "}
             <ArrowBackIosNewRounded className="p-1" />
           </button>
-          <div>
-            <span>chapter 1</span>
+          <div className="bg-(--backdrop) p-1 rounded-full pl-3 pr-3 border-(--border) border">
+            <span>{currentChapter}</span>
           </div>
           <button
             className="top-0 left-10 p-2 rounded-full flex justify-center backdrop-blur-md text-white"
             style={{
-              backgroundColor: "var(--border)",
+              backgroundColor: "var(--backdrop)",
               border: "1px solid var(--border)",
             }}
           >
@@ -51,7 +52,7 @@ export function NavBetwemChapters({
         placement="bottom"
         animationPreset="slide"
       >
-        <ChaptersModal />
+        <ChaptersModal volumeId={volumeId} currentChapterId={currentChapterId} />
       </Context>
     </section>
   );

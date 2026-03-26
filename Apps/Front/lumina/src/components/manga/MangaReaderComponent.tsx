@@ -4,8 +4,7 @@ import { MangaReaderNavComponent } from "../Navigation/MangaReaderNavComponent";
 import { ArrowBackIosNewRounded } from "@mui/icons-material";
 import { useTopMenuTitle } from "../../shared/TopMenuTitleContext";
 import { NavBetwemChapters } from "../Navigation/NavBetwemChapters";
-import { Context } from "../context/Context";
-import { ChaptersModal } from "../modal/ChaptersModal";
+import { chapters, volumes } from "../../../mock/prismaMockData";
 
 export type MangaReaderComponentProps = {
   chapterId?: string;
@@ -33,6 +32,11 @@ export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
   );
   const [pageIndex, setPageIndex] = useState(0);
 
+  const currentVolume = chapters.find(
+    (v) => v.id === chapterPages[0]?.chapterId,
+  );
+  const currentVolumeInfo = volumes.find((v) => v.id === currentVolume?.volumeId);
+
   useEffect(() => {
     setPageIndex(0);
   }, [chapterId]);
@@ -41,7 +45,7 @@ export function MangaReaderComponent({ chapterId }: MangaReaderComponentProps) {
     setAlwaysShowTopMenu(true);
     setShowDefaultButton(false);
     setTitleText("");
-    setCustomComp(<NavBetwemChapters />);
+    setCustomComp(<NavBetwemChapters currentChapter={currentVolume?.title} volumeId={currentVolumeInfo?.id} currentChapterId={chapterId} />);
     return () => {
       setAlwaysShowTopMenu(false);
       setShowDefaultButton(true);
